@@ -72,7 +72,6 @@ public class InputMouse extends MouseAdapter implements MouseMotionListener
 		// Debug
 		System.out.println("Mouse click ref: "+mouseNexusClick);
 		
-		
 		// Temp
 		mouseDragActive = true;
 		mouseDragStartX = mouseCoordsX;

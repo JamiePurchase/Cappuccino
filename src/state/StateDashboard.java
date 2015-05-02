@@ -31,7 +31,7 @@ public class StateDashboard extends State
         g.drawRect(100, 75, 250, 100);
         g.setFont(Fonts.getFont("standard"));
         g.setColor(Color.BLACK);
-        g.drawString("Jamie", 125, 110);
+        g.drawString(Game.getAccountObject().getUsername(), 125, 110);
         // Mail (shows amount unread?)
         // Friends (shows amount online?)
     }
@@ -44,7 +44,7 @@ public class StateDashboard extends State
     public void renderContentPane(Graphics g)
     {
         g.drawImage(Drawing.getImage("system/tileBkg.png"), 200, 400, null);
-        g.drawImage(Drawing.getImage("system/tileTemp.png"), 200, 400, null);
+        g.drawImage(Drawing.getImage("interface/iconDashboard.png", "SteelSkirmish"), 200, 400, null);
     }
     
     public void tick()

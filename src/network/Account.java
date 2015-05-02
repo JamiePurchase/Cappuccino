@@ -9,6 +9,7 @@ public class Account
     private String username;
     private String password;
     private Timestamp online;
+    private int module;
     private boolean avatar;
     private int[] friends;
     
@@ -20,51 +21,57 @@ public class Account
     
     public int getAccountID()
     {
-        return accountID;
+        return this.accountID;
     }
     
     public boolean getAvatar()
     {
-        return avatar;
+        return this.avatar;
     }
     
     public int[] getFriends()
     {
-        return friends;
+        return this.friends;
+    }
+    
+    public int getModule()
+    {
+        return this.module;
     }
     
     public Timestamp getOnline()
     {
-        return online;
+        return this.online;
     }
     
     public String getPassword()
     {
-        return password;
+        return this.password;
     }
     
     public String getUsername()
     {
-        return username;
+        return this.username;
     }
     
     public void networkFetch()
     {
         // Web Request
-        String myData[] = Web.requestArray("account/details.php?accountID=1");
+        String myData[] = Web.requestArray("index.php?action=remote&file=account&function=getAccount&accountID=1");
         
         // Details
         this.username = myData[1];
         this.password = myData[2];
         //this.online = myData[3];
-        //this.avatar = myData[4];
+        this.module = Integer.parseInt(myData[4]);
+        //this.avatar = myData[5];
         
         // Friends
-        int friendCount = Integer.parseInt(myData[5]);
+        int friendCount = Integer.parseInt(myData[6]);
         int[] friendArray = new int[friendCount];
         for(int friend = 0; friend < friendCount; friend++)
         {
-            int position = friend + 6;
+            int position = friend + 7;
             friendArray[friend] = Integer.parseInt(myData[position]);
         }
         this.friends = friendArray;

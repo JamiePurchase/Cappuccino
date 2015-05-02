@@ -41,7 +41,6 @@ public class StateTitle extends State
 
     public void tickKey()
     {
-        //System.out.println("SteelSkirmish State Key: " + InputKeyboard.getKeyPressed());
         if(Game.getInputKeyboard().getKeyPressed() == "Space")
         {
             Game.getInputKeyboard().keyPressedDone();
