@@ -1,6 +1,7 @@
 package engine;
 
 import audio.AudioManager;
+import components.Notification;
 import graphics.Drawing;
 import graphics.Fonts;
 import input.InputKeyboard;
@@ -8,7 +9,10 @@ import input.InputMouse;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
+import module.Antics.module.ModuleAntics;
 import module.Module;
 import module.ModuleDashboard;
 import network.Account;
@@ -28,10 +32,14 @@ public class Game extends JPanel implements Runnable
 	public static AudioManager audio;
         private static boolean accountActive;
         private static Account accountObject;
+        private static int accountUpdateTick;
         private static Module module;
+        private static int moduleID;
         private static boolean modulePaused;
         private static boolean homeMenuActive;
         private static Debug systemDebug;
+        private static boolean notificationActive;
+        private static Notification notificationObject;
 
 	public Game()
 	{
@@ -58,6 +66,7 @@ public class Game extends JPanel implements Runnable
 
             // Module
             setModule(new ModuleDashboard());
+            //setModule(new ModuleAntics());
             setModulePaused(false);
             setHomeMenuActive(false);
 
@@ -105,9 +114,25 @@ public class Game extends JPanel implements Runnable
             return module;
         }
         
+        public static int getModuleID()
+        {
+            return moduleID;
+        }
+        
         public static boolean getModulePaused()
         {
             return modulePaused;
+        }
+        
+        public static void notificationCreate(String message, int tick)
+        {
+            notificationActive = true;
+            notificationObject = new Notification(message, tick);
+        }
+        
+        public static void notificationRemove()
+        {
+            notificationActive = false;
         }
 	
 	private void render()
@@ -133,6 +158,9 @@ public class Game extends JPanel implements Runnable
                 
                 // Home Menu
                 if(getHomeMenuActive()) {renderHomeMenu(g);}
+                
+                // Notification
+                if(this.notificationActive) {this.notificationObject.render(g);}
 
 		// Graphics done
 		bs.show();
@@ -204,6 +232,7 @@ public class Game extends JPanel implements Runnable
             {
                 accountObject = new Account(id);
                 accountActive = true;
+                accountUpdateTick = 1800;
             }
         }
         
@@ -215,6 +244,11 @@ public class Game extends JPanel implements Runnable
         public static void setModule(Module newModule)
         {
             module = newModule;
+        }
+        
+        public static void setModuleID(int id)
+        {
+            moduleID = id;
         }
         
         public static void setModulePaused(boolean value)
@@ -249,6 +283,12 @@ public class Game extends JPanel implements Runnable
 	
 	private void tick()
 	{
+            // Network Update
+            tickNetwork();
+                
+            // Notification
+            tickNotification();
+            
             // Home Menu
             if(this.getHomeMenuActive()) {tickHome();}
             else
@@ -274,6 +314,33 @@ public class Game extends JPanel implements Runnable
                 getInputKeyboard().keyPressedDone();
                 this.setModulePaused(false);
                 this.setHomeMenuActive(false);
+            }
+        }
+        
+        private void tickNetwork()
+        {
+            if(accountActive = true)
+            {
+                accountUpdateTick -= 1;
+                if(accountUpdateTick < 1)
+                {
+                    System.out.println("Interacted with the cloud");
+                    try {getAccountObject().networkUpdate();}
+                    catch (Exception ex) {Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);}
+                    accountUpdateTick = 1800;
+                }
+            }
+        }
+        
+        private void tickNotification()
+        {
+            if(this.notificationActive)
+            {
+                this.notificationObject.tick();
+                if(this.notificationObject.getActive() == false)
+                {
+                    this.notificationActive = false;
+                }
             }
         }
         

@@ -7,18 +7,8 @@ import state.State;
 
 public abstract class Module
 {
+    public abstract State getState();
     public abstract void render(Graphics g);
+    public abstract void setState(State newState);
     public abstract void tick();
-    
-    private static State moduleState;
-    
-    public State getState()
-    {
-        return moduleState;
-    }
-    
-    public void setState(State newState)
-    {
-        moduleState = newState;
-    }
 }

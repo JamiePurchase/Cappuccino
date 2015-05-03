@@ -1,5 +1,6 @@
 package network;
 
+import engine.Game;
 import java.sql.Timestamp;
 import web.Web;
 
@@ -57,7 +58,15 @@ public class Account
     public void networkFetch()
     {
         // Web Request
-        String myData[] = Web.requestArray("index.php?action=remote&file=account&function=getAccount&accountID=1");
+        String myData[] = Web.requestArray("remote.php?folder=account&file=getAccount&accountID=1");
+        
+        // Debug
+        System.out.println(myData[0]);
+        System.out.println(myData[1]);
+        System.out.println(myData[2]);
+        System.out.println(myData[3]);
+        System.out.println(myData[4]);
+        System.out.println(myData[5]);
         
         // Details
         this.username = myData[1];
@@ -67,14 +76,14 @@ public class Account
         //this.avatar = myData[5];
         
         // Friends
-        int friendCount = Integer.parseInt(myData[6]);
+        /*int friendCount = Integer.parseInt(myData[6]);
         int[] friendArray = new int[friendCount];
         for(int friend = 0; friend < friendCount; friend++)
         {
             int position = friend + 7;
             friendArray[friend] = Integer.parseInt(myData[position]);
         }
-        this.friends = friendArray;
+        this.friends = friendArray;*/
     }
     
     public void networkStore()
@@ -84,5 +93,21 @@ public class Account
         // set the online value to now
         // return the online timestamp
         // this.online = 
+    }
+    
+    public void networkUpdate() throws Exception
+    {
+        // Update the online timestamp and moduleID activity tracker
+        Web.request("remote.php?folder=account&file=updateAccount&accountID=" + this.getAccountID() + "&moduleID=" + Game.getModuleID());
+        
+        System.out.println("remote.php?folder=account&file=updateAccount&accountID=" + this.getAccountID() + "&moduleID=" + Game.getModuleID());
+        
+        // Collect data regarding games, friends, messages and updates
+        
+        /*if()
+        {
+            Game.getInputKeyboard().keyPressedDone();
+            Game.notificationCreate("Another player is online", 250);
+        }*/
     }
 }
