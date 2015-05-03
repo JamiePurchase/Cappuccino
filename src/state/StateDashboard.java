@@ -1,19 +1,69 @@
 package state;
 
 import engine.Game;
+import file.FileRead;
+import file.FileWrite;
 import graphics.Drawing;
 import graphics.Fonts;
 import module.SteelSkirmish.module.ModuleSteelSkirmish;
 import input.InputKeyboard;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import module.Antics.module.ModuleAntics;
+import module.Module;
 
 public class StateDashboard extends State
 {
+    private int[] moduleID;
+    private String[] moduleTitle;
+    private Module[] moduleObject;
     
     public StateDashboard()
     {
+        appList();
+    }
+    
+    private void appLaunch(int app)
+    {
+        Game.setModule(moduleObject[app]);
+    }
+    
+    private void appList()
+    {
+        // Get list of apps from local data
+        String[] fileData = new String[50];
+        FileRead fr = new FileRead("modules.froth");
+        try
+        {
+            fileData = fr.FileReadData();
+        }
+        catch (IOException ex) {Logger.getLogger(StateDashboard.class.getName()).log(Level.SEVERE, null, ex);}
         
+        // return appCount;
+        int appCount = fileData.length;
+        
+        // Set size of arrays
+        moduleID = new int[appCount];
+        moduleTitle = new String[appCount];
+        moduleObject = new Module[appCount];
+        
+        // Store data about the apps
+        for(int x = 0; x < appCount; x++)
+        {
+            String[] fileInfo = fileData[x].split("\\|");
+            moduleID[x] = Integer.parseInt(fileInfo[0]);
+            moduleTitle[x] = fileInfo[1];
+            //moduleVersion[x] = Integer.parseInt(fileInfo[2]);
+            
+            // Gave up trying to cast a string class name to an object
+            if(fileInfo[3] == "SteelSkirmish") {moduleObject[x] = new ModuleSteelSkirmish();}
+            if(fileInfo[3] == "Antics") {moduleObject[x] = new ModuleAntics();}
+            
+            new ModuleSteelSkirmish();
+        }
     }
     
     public void render(Graphics g)
@@ -52,7 +102,7 @@ public class StateDashboard extends State
         if(Game.getInputKeyboard().getKeyPressed() == "Space")
         {
             Game.getInputKeyboard().keyPressedDone();
-            Game.setModule(new ModuleSteelSkirmish());
+            appLaunch(0);
         }
     }
 }

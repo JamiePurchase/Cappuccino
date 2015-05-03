@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package file;
+import engine.Game;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -14,7 +15,7 @@ public class FileRead
 	
 	public FileRead(String newPath)
 	{
-		readPath = "C:/Users/Jamie/Documents/NetBeansProjects/Cappucino/data/" + newPath;
+		readPath = Game.getResourcePath() + "data/" + newPath;
 	}
 	
 	public String[] FileReadData() throws IOException

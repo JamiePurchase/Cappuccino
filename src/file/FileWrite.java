@@ -5,6 +5,7 @@
  */
 package file;
 
+import engine.Game;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
@@ -17,9 +18,9 @@ public class FileWrite
 	
 	public FileWrite(String newPath, boolean newAppend)
 	{
-		writePath = "C:/Users/Jamie/Documents/NetBeansProjects/APPNAME/DATA" + newPath;
-		writeAppend = newAppend;
-		writeBreak = System.getProperty("line.separator");
+            writePath = Game.getResourcePath() + "data/" + newPath;
+            writeAppend = newAppend;
+            writeBreak = System.getProperty("line.separator");
 	}
 	
 	public void FileWriteLine(String textLine) throws IOException

@@ -1,5 +1,6 @@
 package graphics;
 
+import engine.Game;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -39,12 +40,12 @@ public class Drawing
 	
 	public static BufferedImage getImage(String filepath)
 	{
-            return getImageFile("C:/Users/Jamie/Documents/NetBeansProjects/Cappuccino/src/resources/" + filepath);
+            return getImageFile(Game.getResourcePath() + "src/resources/" + filepath);
 	}
         
         public static BufferedImage getImage(String filepath, String module)
         {
-            return getImageFile("C:/Users/Jamie/Documents/NetBeansProjects/Cappuccino/src/module/" + module + "/resources/" + filepath);
+            return getImageFile(Game.getResourcePath() + "src/module/" + module + "/resources/" + filepath);
         }
         
         public static BufferedImage getImageFile(String filepath)

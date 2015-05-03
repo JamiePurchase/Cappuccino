@@ -1,5 +1,6 @@
 package audio;
 
+import engine.Game;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -32,10 +33,10 @@ public class AudioPlayer
 		Clip clip;
 		try
 		{
-			InputStream in = new FileInputStream("C:/Users/Jamie/Documents/NetBeansProjects/Cappuccino/src/resources/"+s);
+			InputStream in = new FileInputStream(Game.getResourcePath() + "src/resources/" + s);
                         
                         // Debug
-                        System.out.println("Audio Player Load: " + "C:/Users/Jamie/Documents/NetBeansProjects/Cappuccino/src/resources/"+s);
+                        System.out.println("Audio Player Load: " + Game.getResourcePath() + "src/resources/" + s);
                         
 			InputStream bin = new BufferedInputStream(in);
 			AudioInputStream ais =

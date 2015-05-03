@@ -17,7 +17,7 @@ public class StateBoard extends State
     public StateBoard()
     {
         this.board = new Board("Test", 10, 10);
-        //String file = "C:/Users/Jamie/Documents/NetBeansProjects/Cappuccino/src/module/Antics/resources/tileset/village1.png";
+        //String file = Game.getResourcePath() + "src/module/Antics/resources/tileset/village1.png";
         //tileset = Tileset.getTileset(file, 8, 22);
     }
     

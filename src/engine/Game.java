@@ -40,6 +40,7 @@ public class Game extends JPanel implements Runnable
         private static Debug systemDebug;
         private static boolean notificationActive;
         private static Notification notificationObject;
+        private static String resourcePath;
 
 	public Game()
 	{
@@ -47,6 +48,7 @@ public class Game extends JPanel implements Runnable
             this.title = "Cappuccino";
             this.width = 1366;
             this.height = 768;
+            this.resourcePath = "C:/Users/Jamie/Documents/NetBeansProjects/Cappuccino/";
             
             // Input Devices
             this.inputKeyboard = new InputKeyboard();
@@ -122,6 +124,11 @@ public class Game extends JPanel implements Runnable
         public static boolean getModulePaused()
         {
             return modulePaused;
+        }
+        
+        public static String getResourcePath()
+        {
+            return resourcePath;
         }
         
         public static void notificationCreate(String message, int tick)
