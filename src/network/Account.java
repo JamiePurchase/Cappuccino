@@ -10,7 +10,7 @@ public class Account
     private String username;
     private String password;
     private Timestamp online;
-    private int module;
+    private String module;
     private boolean avatar;
     private int[] friends;
     
@@ -35,7 +35,7 @@ public class Account
         return this.friends;
     }
     
-    public int getModule()
+    public String getModule()
     {
         return this.module;
     }
@@ -58,7 +58,7 @@ public class Account
     public void networkFetch()
     {
         // Web Request
-        String myData[] = Web.requestArray("remote.php?folder=account&file=getAccount&accountID=1");
+        String myData[] = Web.requestArray("remote.php?module=SYSTEM&action=getAccount&accountID=" + this.accountID);
         
         // Debug
         System.out.println(myData[0]);
@@ -72,7 +72,7 @@ public class Account
         this.username = myData[1];
         this.password = myData[2];
         //this.online = myData[3];
-        this.module = Integer.parseInt(myData[4]);
+        this.module = myData[4];
         //this.avatar = myData[5];
         
         // Friends
@@ -98,9 +98,7 @@ public class Account
     public void networkUpdate() throws Exception
     {
         // Update the online timestamp and moduleID activity tracker
-        Web.request("remote.php?folder=account&file=updateAccount&accountID=" + this.getAccountID() + "&moduleID=" + Game.getModuleID());
-        
-        System.out.println("remote.php?folder=account&file=updateAccount&accountID=" + this.getAccountID() + "&moduleID=" + Game.getModuleID());
+        Web.request("remote.php?module=SYSTEM&action=updateAccount&accountID=" + this.getAccountID() + "&moduleID=" + Game.getModuleID());
         
         // Collect data regarding games, friends, messages and updates
         

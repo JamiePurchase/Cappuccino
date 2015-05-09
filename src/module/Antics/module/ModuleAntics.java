@@ -2,6 +2,7 @@ package module.Antics.module;
 
 import engine.Game;
 import static engine.Game.getAccountObject;
+import graphics.Fonts;
 import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,12 +21,17 @@ public class ModuleAntics extends Module
         this.setState(new StateBoard());
         
         // Unique ID
-        Game.setModuleID(3);
+        Game.setModuleID("GAM-ANTICS01");
         
         // Update the cloud
         /*System.out.println("Interacted with the cloud");
         try {Game.getAccountObject().networkUpdate();}
         catch (Exception ex) {Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);}*/
+    }
+    
+    public Fonts getFonts()
+    {
+        return new Fonts();
     }
     
     public State getState()

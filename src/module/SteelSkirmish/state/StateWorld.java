@@ -10,6 +10,7 @@ public class StateWorld extends State
     
     public StateWorld()
     {
+        System.out.println("SteelSkirmish StateWorld");
         this.world = new World();
     }
     

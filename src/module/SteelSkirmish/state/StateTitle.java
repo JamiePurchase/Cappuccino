@@ -28,7 +28,7 @@ public class StateTitle extends State
         g.drawImage(Drawing.getImage("interface/logo.png", "SteelSkirmish"), 396, 50, null);
         
         // Options
-        g.setFont(Fonts.getFont("standard"));
+        g.setFont(Fonts.getFont("Standard"));
         g.setColor(Color.WHITE);
         g.drawString("Press the spacebar to continue", 500, 500);
     }

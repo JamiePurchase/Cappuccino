@@ -37,10 +37,6 @@ public class World
     public World()
     {
         // Temp
-        addUnitAlly(new Unit(1, 1, "knight", 100, 100, 3, 2));
-        addUnitAlly(new Unit(2, 1, "samurai", 100, 100, 2, 5));
-        
-        // Temp
         this.battlePlayer = true;
         
         // Temp
@@ -50,7 +46,15 @@ public class World
         this.playerName[1] = "Opponent";
         
         // Temp
-        this.debugEnable = true;
+        addUnitAlly(new Unit(1, 1, "knight", 100, 100, 3, 2));
+        addUnitAlly(new Unit(2, 1, "samurai", 100, 100, 2, 5));
+        
+        // Temp
+        addUnitEnemy(new Unit(3, 2, "knight", 100, 100, 8, 2));
+        addUnitEnemy(new Unit(4, 2, "samurai", 100, 100, 6, 5));
+        
+        // Temp
+        this.debugEnable = false;
         
         // Temp
         this.tempFlag = false;
@@ -101,26 +105,31 @@ public class World
     public void renderDebugPane(Graphics g)
     {
         // Render frame fill
-        int frameX = 25;
         g.setColor(Color.BLACK);
-        g.fillRect(frameX, 25, 200, 100);
+        g.fillRect(500, 25, 400, 100);
         
         // Render frame border
         g.setColor(Color.GREEN);
-        g.drawRect(frameX, 25, 200, 100);
+        g.drawRect(500, 25, 400, 100);
         
         // Render message
-        String debugMessage = "It is your turn";
-        if(this.battlePlayer == false) {debugMessage = "It is not your turn";}
-        g.setFont(Fonts.getFont("standard"));
+        String debugMessage1 = "It is your turn";
+        if(this.battlePlayer == false) {debugMessage1 = "It is not your turn";}
+        String debugMessage2 = "Nothing selected";
+        if(this.playerSelect) {debugMessage2 = "Unit selected";}
+        g.setFont(Fonts.getFont("Standard"));
         g.setColor(Color.GREEN);
-        g.drawString(debugMessage, 25, 25);
+        g.drawString(debugMessage1, 525, 60);
+        g.drawString(debugMessage2, 525, 90);
     }
     
     public void renderInterface(Graphics g)
     {
-        renderInterfacePlayer(g, 1);
-        renderInterfacePlayer(g, 2);
+        /*renderInterfacePlayer(g, 1);
+        renderInterfacePlayer(g, 2);*/
+        
+        // Temp
+        g.drawImage(Drawing.getImage("interface/hudPlayer.png", "SteelSkirmish"), 0, 0, null);
     }
     
     public void renderInterfacePlayer(Graphics g, int player)
@@ -139,7 +148,7 @@ public class World
         String nameString = this.playerName[player-1];
         int nameX = 40;
         if(player == 2) {nameX = 1005;}
-        g.setFont(Fonts.getFont("standard"));
+        g.setFont(Fonts.getFont("Standard"));
         g.setColor(Color.BLACK);
         g.drawString(nameString, nameX, 60);
     }
@@ -183,6 +192,7 @@ public class World
     public void tick()
     {
         tickMouse();
+        tickUnits();
     }
     
     public void tickMouse()
@@ -206,6 +216,28 @@ public class World
                     playerSelect = true;
                 }
             }
+        }
+    }
+    
+    public void tickUnits()
+    {
+        tickUnitsAllies();
+        tickUnitsEnemies();
+    }
+    
+    public void tickUnitsAllies()
+    {
+        for(int unit = 0; unit < unitAlliesCount; unit++)
+        {
+            unitAllies[unit].tick();
+        }
+    }
+    
+    public void tickUnitsEnemies()
+    {
+        for(int unit = 0; unit < unitEnemiesCount; unit++)
+        {
+            unitEnemies[unit].tick();
         }
     }
     

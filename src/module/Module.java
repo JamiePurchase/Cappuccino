@@ -8,7 +8,7 @@ import graphics.Fonts;
 
 public abstract class Module
 {
-    public abstract Fonts getFont();
+    public abstract Fonts getFonts();
     public abstract State getState();
     public abstract void render(Graphics g);
     public abstract void setState(State newState);

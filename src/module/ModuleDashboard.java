@@ -1,7 +1,9 @@
 package module;
 
 import engine.Game;
+import graphics.Fonts;
 import static engine.Game.getAccountObject;
+import graphics.DashboardFonts;
 import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,12 +21,17 @@ public class ModuleDashboard extends Module
         this.setState(new StateLogin());
         
         // Unique ID
-        Game.setModuleID(1);
+        Game.setModuleID("SYS-HOMEDASH");
         
         // Update the cloud
         System.out.println("Interacted with the cloud");
         try {Game.getAccountObject().networkUpdate();}
         catch (Exception ex) {Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);}
+    }
+    
+    public Fonts getFonts()
+    {
+        return new DashboardFonts();
     }
     
     public State getState()

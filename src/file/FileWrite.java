@@ -52,13 +52,13 @@ public class FileWrite
 	{
 		System.out.println("FWAO");
 		String textData = "";
-		for(int line=0;line<textLines.length;line+=1)
+		for(int line = 0; line < textLines.length; line++)
 		{
 			textData = textData + textLines[line];
-			if(line<textLines.length-1){textData = textData + writeBreak;}
+			if(line < textLines.length - 1) {textData = textData + writeBreak;}
 		}
-		try{FileWriteLine(textData);}
-		catch (IOException e){e.printStackTrace();}
+		try {FileWriteLine(textData);}
+		catch (IOException e) {e.printStackTrace();}
 	}
 
 }

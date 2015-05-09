@@ -21,6 +21,7 @@ public class Unit
     // Animation
     private String animStance;
     private int animFrame;
+    private int animTick;
     
     // Grid Data
     private int gridPosX;
@@ -35,8 +36,9 @@ public class Unit
         this.unitSelect = false;
         this.statHealthNow = healthNow;
         this.statHealthMax = healthMax;
-        this.animStance = "idle";
+        this.animStance = "IDLE";
         this.animFrame = 1;
+        this.animTick = 0;
         this.gridPosX = posX;
         this.gridPosY = posY;
     }
@@ -61,6 +63,12 @@ public class Unit
         return this.animFrame;
     }
     
+    public int getAnimFrameMax()
+    {
+        if(this.animStance == "IDLE") {return 3;}
+        return 3;
+    }
+    
     public int getAnimPosX()
     {
         return this.gridPosX * 100;
@@ -74,6 +82,13 @@ public class Unit
     public String getAnimStance()
     {
         return this.animStance;
+    }
+    
+    public int getAnimTickMax()
+    {
+        // NOTE: This is how many ticks each frame of animation will last for
+        if(this.animStance == "IDLE" && this.animFrame == 1) {return 12;}
+        return 6;
     }
     
     public int getGridPosX()
@@ -140,5 +155,21 @@ public class Unit
     public void setUnitSelected(boolean value)
     {
         this.unitSelect = value;
+    }
+    
+    public void tick()
+    {
+        tickAnimation();
+    }
+    
+    public void tickAnimation()
+    {
+        this.animTick += 1;
+        if(this.animTick > this.getAnimTickMax())
+        {
+            this.animTick = 0;
+            this.animFrame += 1;
+            if(this.animFrame > this.getAnimFrameMax()) {this.animFrame = 1;}
+        }
     }
 }

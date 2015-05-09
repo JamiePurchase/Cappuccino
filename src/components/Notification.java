@@ -28,7 +28,7 @@ public class Notification
         if(this.active)
         {
             g.drawImage(Drawing.getImage("system/frame200x100.png"), 583, 334, null);
-            g.setFont(Fonts.getFont("standard"));
+            g.setFont(Fonts.getFont("Standard"));
             g.setColor(Color.BLACK);
             g.drawString(this.message, 600, 360);
         }

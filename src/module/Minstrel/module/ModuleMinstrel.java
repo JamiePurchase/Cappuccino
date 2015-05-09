@@ -20,7 +20,7 @@ public class ModuleMinstrel extends Module
         this.setState(new StateMain());
         
         // Unique ID (this should be changed to the newer, larger unique ID that is saved in a froth file
-        Game.setModuleID(2);
+        Game.setModuleID("APP-MINSTREL");
         
         // Update the cloud
         System.out.println("Interacted with the cloud");
@@ -28,7 +28,7 @@ public class ModuleMinstrel extends Module
         catch (Exception ex) {Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);}
     }
     
-    public Fonts getFont()
+    public Fonts getFonts()
     {
         return new ModuleFonts();
     }

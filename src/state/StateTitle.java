@@ -29,7 +29,7 @@ public class StateTitle extends State
         g.drawImage(Drawing.getImage("system/logoCappucino.png"), 478, 50, null);
         
         // Options
-        g.setFont(Fonts.getFont("standard"));
+        g.setFont(Fonts.getFont("Standard"));
         g.setColor(Color.WHITE);
         g.drawString("This is the title screen", 500, 300);
     }

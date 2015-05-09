@@ -40,7 +40,7 @@ public class InputKeyboard implements KeyListener
 
     public void keyPressed(KeyEvent e)
     {
-        //System.out.println("Key pressed: " + e.getKeyChar());
+        System.out.println("Key pressed: " + e.getKeyChar());
         if(e.getKeyCode() == KeyEvent.VK_ENTER){keyPressed = "Enter";}
         if(e.getKeyCode() == KeyEvent.VK_SPACE){keyPressed = "Space";}
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE){keyPressed = "Escape";}

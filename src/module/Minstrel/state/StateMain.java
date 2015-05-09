@@ -33,7 +33,7 @@ public class StateMain extends State
         g.drawString("Minstrel", 500, 50);
         
         // Options
-        g.setFont(Fonts.getFont("standard"));
+        g.setFont(Fonts.getFont("Standard"));
         g.setColor(Color.WHITE);
         g.drawString("Press the spacebar to continue", 500, 500);
     }

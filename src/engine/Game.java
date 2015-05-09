@@ -16,6 +16,7 @@ import module.Antics.module.ModuleAntics;
 import module.Minstrel.module.ModuleMinstrel;
 import module.Module;
 import module.ModuleDashboard;
+import module.Registry;
 import module.SteelSkirmish.module.ModuleSteelSkirmish;
 import network.Account;
 
@@ -35,8 +36,9 @@ public class Game extends JPanel implements Runnable
         private static boolean accountActive;
         private static Account accountObject;
         private static int accountUpdateTick;
+        private static Registry moduleRegistry;
         private static Module module;
-        private static int moduleID;
+        private static String moduleID;
         private static boolean modulePaused;
         private static boolean homeMenuActive;
         private static Debug systemDebug;
@@ -58,6 +60,9 @@ public class Game extends JPanel implements Runnable
             
             // Debug Manager
             systemDebug = new Debug(false);
+            
+            // Module Registry
+            this.moduleRegistry = new Registry();
             
             // Account Details
             setAccount(1);
@@ -121,7 +126,7 @@ public class Game extends JPanel implements Runnable
             return module;
         }
         
-        public static int getModuleID()
+        public static String getModuleID()
         {
             return moduleID;
         }
@@ -188,7 +193,7 @@ public class Game extends JPanel implements Runnable
             g.drawImage(Drawing.getImage("system/frame700x300.png"), 333, 234, null);
 
             // Menu Options
-            g.setFont(Fonts.getFont("standard"));
+            g.setFont(Fonts.getFont("Standard"));
             g.setColor(Color.BLACK);
             g.drawString("Dashboard", 458, 259);
         }
@@ -258,7 +263,7 @@ public class Game extends JPanel implements Runnable
             module = newModule;
         }
         
-        public static void setModuleID(int id)
+        public static void setModuleID(String id)
         {
             moduleID = id;
         }
