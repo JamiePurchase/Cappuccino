@@ -13,8 +13,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import module.Antics.module.ModuleAntics;
+import module.Minstrel.module.ModuleMinstrel;
 import module.Module;
 import module.ModuleDashboard;
+import module.SteelSkirmish.module.ModuleSteelSkirmish;
 import network.Account;
 
 public class Game extends JPanel implements Runnable
@@ -59,6 +61,7 @@ public class Game extends JPanel implements Runnable
             
             // Account Details
             setAccount(1);
+            // NOTE: This should be set when the user successfully logs into the system
 	}
 	
 	private void init()
@@ -67,7 +70,9 @@ public class Game extends JPanel implements Runnable
             display = new Display(title, width, height);
 
             // Module
-            setModule(new ModuleDashboard());
+            //setModule(new ModuleDashboard());
+            setModule(new ModuleSteelSkirmish());
+            //setModule(new ModuleMinstrel());
             //setModule(new ModuleAntics());
             setModulePaused(false);
             setHomeMenuActive(false);
