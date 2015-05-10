@@ -20,6 +20,6 @@ public class StateWar extends State
     
     public void tick()
     {
-        //
+        this.war.tick();
     }
 }

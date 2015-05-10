@@ -19,4 +19,14 @@ public abstract class Entity
     
     // Audio
     private String audioFile;
+    
+    public String getEntityTitle()
+    {
+        return this.entityTitle;
+    }
+    
+    public void setEntityTitle(String title)
+    {
+        this.entityTitle = title;
+    }
 }

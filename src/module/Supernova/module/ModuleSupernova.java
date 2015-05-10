@@ -24,7 +24,7 @@ public class ModuleSupernova extends Module
         
         // Load tilesets
         TilesetManager.clear();
-        TilesetManager.load("Mongun8-Exterior01", Drawing.getImage("graphics/terrain/Mongun8/exterior01.png", "Supernova"), 128, 64, 1, 1);
+        TilesetManager.load("Mongun8-Exterior01", Drawing.getImage("graphics/terrain/Mongun8/exterior01.png", "Supernova"), 128, 64, 2, 1);
         TilesetManager.load("Character01", Drawing.getImage("graphics/units/temp/temp1.png", "Supernova"), 48, 96, 4, 4);
         
         // Initial State

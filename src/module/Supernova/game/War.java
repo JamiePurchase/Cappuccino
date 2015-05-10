@@ -4,6 +4,8 @@ import engine.Game;
 import graphics.Drawing;
 import java.awt.Color;
 import java.awt.Graphics;
+import module.Supernova.entity.Entity;
+import module.Supernova.entity.EntitySentientUnit;
 import module.Supernova.force.ForceNature;
 import module.Supernova.force.ForcePlayer;
 import module.Supernova.world.Landscape;
@@ -17,6 +19,10 @@ public class War
     private ForcePlayer[] warForces;
     private int warForcesCount;
     private ForceNature warNature;
+    
+    // Selection
+    private boolean warSelectActive;
+    private Entity warSelectEntity;
     
     public War()
     {
@@ -32,8 +38,19 @@ public class War
         this.warNature = new ForceNature();
     }
     
+    public boolean getSelectActive()
+    {
+        return this.warSelectActive;
+    }
+    
+    public Entity getSelectEntity()
+    {
+        return this.warSelectEntity;
+    }
+    
     public void render(Graphics g)
     {
+        Game.getInputMouse().nexusClear();
         renderLand(g);
         renderNature(g);
         renderForce(g);
@@ -51,12 +68,14 @@ public class War
             for(int unit = 0; unit < warForces[force].getEntityUnitsCount(); unit++)
             {
                 this.warForces[force].getEntityUnits()[unit].render(g);
+                this.warForces[force].getEntityUnits()[unit].mouseNexus("F" + force + "|U" + unit);
             }
         }
     }
     
     public void renderInterface(Graphics g)
     {
+        // Temp Border
         g.setColor(Drawing.getColorRGB(69, 85, 69));
         g.fillRect(0, 0, Game.width, 50);
         g.fillRect(0, 0, 10, Game.height);
@@ -65,6 +84,15 @@ public class War
         g.setColor(Drawing.getColorRGB(49, 65, 49));
         g.drawRect(10, 50, Game.width - 20, Game.height - 125);
         g.drawRect(11, 51, Game.width - 22, Game.height - 127);
+        
+        // Temp Selection Info
+        if(this.warSelectActive)
+        {
+            String tempSelect = "Unit Selected: " + this.warSelectEntity.getEntityTitle();
+            g.setFont(Game.getFont("FrameTitle"));
+            g.setColor(Color.WHITE);
+            g.drawString(tempSelect, 50, Game.height - 50);
+        }
     }
     
     public void renderLand(Graphics g)
@@ -82,5 +110,66 @@ public class War
         {
             warNature.getEntityScenery()[creature].render(g);
         }
+    }
+    
+    public void selectClear()
+    {
+        this.warSelectActive = false;
+        // need to invalidate this.warSelectEntity
+    }
+    
+    public void selectEntity(Entity entity)
+    {
+        // NOTE: May be worth having an array of Entities for multiple selections
+        this.warSelectActive = true;
+        this.warSelectEntity = entity;
+    }
+    
+    public void tick()
+    {
+        tickInput();
+        tickForce();
+    }
+    
+    public void tickInput()
+    {
+        if(Game.getInputMouse().mouseActionPressedL == true)
+        {            
+            // NOTE: Change this section slightly, so we have a boolean to say if we hit a nexus
+            String ref = Game.getInputMouse().nexusCheckRef();
+            // NOTE: Check if the mouse clicked within the world (as opposed to interface/menu/border)
+            if(ref.length() > 0)
+            {
+                // Rather than listing them here, can't we have intelligent onClick events?
+                if(ref.equals("F0|U0"))
+                {
+                    Game.getInputMouse().mouseActionDone();
+
+                    // Temp
+                    EntitySentientUnit unitClick = this.warForces[0].getEntityUnits()[0];
+                    unitClick.setSelected(true);
+                    // NOTE: Perhaps state would be better than here to say which unit(s) is/are selected?
+                    this.selectEntity(unitClick);
+                }
+            }
+            else
+            {
+                Game.getInputMouse().mouseActionDone();
+                this.selectClear();
+            }
+        }
+        if(Game.getInputMouse().mouseActionPressedR == true)
+        {
+            if(this.getSelectActive())
+            {
+                // mark the location of the click as the target, if the unit is able to move
+            }
+        }
+    }
+    
+    public void tickForce()
+    {
+        // resources, creatures, weather, events, armies, buildings, technologies, units, effects, actions
+        this.warForces[0].getEntityUnits()[0].tick();
     }
 }

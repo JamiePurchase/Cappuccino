@@ -13,8 +13,9 @@ public class Landscape
     // Background
     private Color bkgColour;
     
-    // Border/Dimensions/Limit/Edge
-    //private ??
+    // Board
+    private int boardSizeX;
+    private int boardSizeY;
     
     // Terrain
     private BufferedImage[][] terrainImage;
@@ -30,9 +31,13 @@ public class Landscape
         this.bkgColour = Drawing.getColorRGB(180, 197, 133);
         
         // Temp
+        this.boardSizeX = 5;
+        this.boardSizeY = 5;
+        
+        // Temp
         this.tilesetMain = Game.getTileset("Mongun8-Exterior01");
         this.terrainImage = new BufferedImage[6][6];
-        this.terrainImage[0][0] = this.tilesetMain.getTileAt(1, 1);
+        this.terrainSetAll(this.tilesetMain.getTileAt(2, 1));
     }
     
     public void render(Graphics g)
@@ -49,6 +54,25 @@ public class Landscape
     
     public void renderTerrain(Graphics g)
     {
-        
+        for(int cellY = 0; cellY < this.terrainImage.length; cellY++)
+        {
+            for(int cellX = 0; cellX < this.terrainImage[cellY].length; cellX++)
+            {
+                int screenX = (cellX * 128  / 2) + (cellY * 128  / 2);
+                int screenY = (cellY * 64 / 2) - (cellX * 64 / 2);
+                g.drawImage(this.terrainImage[cellX][cellY], screenX, screenY, null);
+            }
+        }
+    }
+    
+    public void terrainSetAll(BufferedImage tile)
+    {
+        for(int tileX = 0; tileX < 5; tileX++)
+        {
+            for(int tileY = 0; tileY < 5; tileY++)
+            {
+                this.terrainImage[tileX][tileY] = tile;
+            }
+        }
     }
 }
