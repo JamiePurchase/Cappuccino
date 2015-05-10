@@ -42,9 +42,9 @@ public class EntitySentientUnit extends Entity
         // Temp
         this.drawFace = "SE";
         this.drawAnimTick = 0;
-        this.drawAnimTickMax = 5;
+        this.drawAnimTickMax = 20;
         this.drawAnimFrame = 1;
-        this.drawAnimFrameMax = 3;
+        this.drawAnimFrameMax = 4;
         this.drawAnimTileset = TilesetManager.getTileset("Character01");
         
         // Temp
@@ -79,8 +79,7 @@ public class EntitySentientUnit extends Entity
     
     public void render(Graphics g, int zoom)
     {
-        // NOTE: Must replace hardcoded positions with 
-        g.drawImage(this.getAnimImage(zoom), 100, 100, null);
+        g.drawImage(this.getAnimImage(zoom), this.getDrawPosX(), this.getDrawPosY(), null);
     }
     
     public void setSelected(boolean value)

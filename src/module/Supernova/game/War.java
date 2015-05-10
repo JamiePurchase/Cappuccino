@@ -20,6 +20,12 @@ public class War
     private int warForcesCount;
     private ForceNature warNature;
     
+    // Interface
+    private int warUiSizeBottom;
+    private int warUiSizeLeft;
+    private int warUiSizeRight;
+    private int warUiSizeTop;
+    
     // Selection
     private boolean warSelectActive;
     private Entity warSelectEntity;
@@ -27,6 +33,12 @@ public class War
     public War()
     {
         this.warLandscape = new Landscape();
+        
+        // Temp
+        this.warUiSizeBottom = 150;
+        this.warUiSizeLeft = 10;
+        this.warUiSizeRight = 10;
+        this.warUiSizeTop = 50;
         
         // Temp
         this.warForces = new ForcePlayer[4];
@@ -63,7 +75,7 @@ public class War
         {
             for(int building = 0; building < this.warForces[force].getEntityBuildingsCount(); building++)
             {
-                this.warForces[force].getEntityUnits()[building].render(g, this.warLandscape.getBoardZoom());
+                this.warForces[force].getEntityBuildings()[building].render(g, this.warLandscape.getBoardZoom());
             }
             for(int unit = 0; unit < warForces[force].getEntityUnitsCount(); unit++)
             {
@@ -75,15 +87,65 @@ public class War
     
     public void renderInterface(Graphics g)
     {
-        // Temp Border
+        renderInterfaceBorder(g);
+        renderInterfaceInfobar(g);
+        renderInterfaceSelection(g);
+        renderInterfaceMinimap(g);
+    }
+    
+    public void renderInterfaceBorder(Graphics g)
+    {
+        // Border Fill
         g.setColor(Drawing.getColorRGB(69, 85, 69));
-        g.fillRect(0, 0, Game.width, 50);
-        g.fillRect(0, 0, 10, Game.height);
-        g.fillRect(Game.width - 10, 0, 10, Game.height);
-        g.fillRect(0, Game.height - 75, Game.width, 75);
+        g.fillRect(0, 0, Game.width, this.warUiSizeTop);
+        g.fillRect(0, 0, this.warUiSizeLeft, Game.height);
+        g.fillRect(Game.width - this.warUiSizeRight, 0, this.warUiSizeRight, Game.height);
+        g.fillRect(0, Game.height - this.warUiSizeBottom, Game.width, this.warUiSizeBottom);
+        
+        // Border Inside
         g.setColor(Drawing.getColorRGB(49, 65, 49));
-        g.drawRect(10, 50, Game.width - 20, Game.height - 125);
-        g.drawRect(11, 51, Game.width - 22, Game.height - 127);
+        g.drawRect(this.warUiSizeLeft, this.warUiSizeTop, Game.width - (this.warUiSizeLeft + this.warUiSizeRight), Game.height - (this.warUiSizeTop + this.warUiSizeBottom));
+        g.drawRect(this.warUiSizeLeft + 1, this.warUiSizeTop + 1, Game.width - (this.warUiSizeLeft + this.warUiSizeRight) - 2, Game.height - (this.warUiSizeTop + this.warUiSizeBottom) - 2);
+    }
+    
+    public void renderInterfaceInfobar(Graphics g)
+    {
+        // Temp Resource Info
+        g.setFont(Game.getFont("FrameTitle"));
+        g.setColor(Color.WHITE);
+        g.drawString("?????", 50, 30);
+        g.drawString("?????", 250, 30);
+        g.drawString("Obsidian", 450, 30);
+        g.drawString("?????", 650, 30);
+    }
+    
+    public void renderInterfaceMinimap(Graphics g)
+    {
+        // Border Join Background
+        g.setColor(Drawing.getColorRGB(69, 85, 69));
+        g.fillRect(Game.width - (this.warUiSizeRight + 75), Game.height - 280, 80, 280);
+        
+        // Border Join Outline
+        g.setColor(Drawing.getColorRGB(49, 65, 49));
+        g.fillRect(Game.width - (this.warUiSizeRight + 75), Game.height - 280, 75, 2);
+        
+        // Minimap Background
+        g.setColor(Color.WHITE);
+        g.fillOval(Game.width - 320, Game.height - 310, 300, 300);
+        
+        // Minimap Border
+        g.setColor(Drawing.getColorRGB(49, 65, 49));
+        g.drawOval(Game.width - 320, Game.height - 310, 300, 300);
+        g.drawOval(Game.width - 319, Game.height - 310, 300, 300);
+        g.drawOval(Game.width - 320, Game.height - 309, 300, 300);
+        g.drawOval(Game.width - 319, Game.height - 309, 300, 300);
+    }
+    
+    public void renderInterfaceSelection(Graphics g)
+    {
+        // Temp Selection Pane
+        g.setColor(Color.WHITE);
+        g.drawRect(325, Game.height - 130, 400, 70);
         
         // Temp Selection Info
         if(this.warSelectActive)
@@ -91,7 +153,7 @@ public class War
             String tempSelect = "Unit Selected: " + this.warSelectEntity.getEntityTitle();
             g.setFont(Game.getFont("FrameTitle"));
             g.setColor(Color.WHITE);
-            g.drawString(tempSelect, 50, Game.height - 50);
+            g.drawString(tempSelect, 350, Game.height - 50);
         }
     }
     
