@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import module.Module;
+import module.Supernova.state.StateTitle;
 import module.Supernova.state.StateWar;
 import state.State;
 
@@ -28,7 +29,8 @@ public class ModuleSupernova extends Module
         TilesetManager.load("Character01", Drawing.getImage("graphics/units/temp/temp1.png", "Supernova"), 48, 96, 4, 4);
         
         // Initial State
-        this.setState(new StateWar());
+        this.setState(new StateTitle());
+        //this.setState(new StateWar());
         
         // Update the cloud
         /*System.out.println("Interacted with the cloud");

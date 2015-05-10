@@ -63,11 +63,11 @@ public class War
         {
             for(int building = 0; building < this.warForces[force].getEntityBuildingsCount(); building++)
             {
-                this.warForces[force].getEntityUnits()[building].render(g);
+                this.warForces[force].getEntityUnits()[building].render(g, this.warLandscape.getBoardZoom());
             }
             for(int unit = 0; unit < warForces[force].getEntityUnitsCount(); unit++)
             {
-                this.warForces[force].getEntityUnits()[unit].render(g);
+                this.warForces[force].getEntityUnits()[unit].render(g, this.warLandscape.getBoardZoom());
                 this.warForces[force].getEntityUnits()[unit].mouseNexus("F" + force + "|U" + unit);
             }
         }
@@ -104,11 +104,11 @@ public class War
     {
         for(int scenery = 0; scenery < warNature.getEntitySceneryCount(); scenery++)
         {
-            warNature.getEntityScenery()[scenery].render(g);
+            warNature.getEntityScenery()[scenery].render(g, this.warLandscape.getBoardZoom());
         }
         for(int creature = 0; creature < warNature.getEntityCreaturesCount(); creature++)
         {
-            warNature.getEntityScenery()[creature].render(g);
+            warNature.getEntityScenery()[creature].render(g, this.warLandscape.getBoardZoom());
         }
     }
     

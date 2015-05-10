@@ -5,6 +5,7 @@ import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -60,5 +61,15 @@ public class Drawing
                     System.out.println(e);
             }
             return image;
+        }
+        
+        public static BufferedImage resize(BufferedImage imgOld, int newW, int newH)
+        { 
+            Image imgTemp = imgOld.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+            BufferedImage imgNew = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = imgNew.createGraphics();
+            g2d.drawImage(imgTemp, 0, 0, null);
+            g2d.dispose();
+            return imgNew;
         }
 }

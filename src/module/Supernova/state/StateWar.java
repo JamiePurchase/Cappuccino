@@ -13,6 +13,11 @@ public class StateWar extends State
         this.war = new War();
     }
     
+    public War getWar()
+    {
+        return this.war;
+    }
+    
     public void render(Graphics g)
     {
         this.war.render(g);

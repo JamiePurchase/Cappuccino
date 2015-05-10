@@ -1,12 +1,12 @@
-package module.SteelSkirmish.state;
+package module.Supernova.state;
 
 import engine.Game;
 import graphics.Drawing;
-import graphics.Fonts;
-import input.InputKeyboard;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import module.ModuleDashboard;
+import module.Supernova.state.StateWar;
 import state.State;
 
 public class StateTitle extends State
@@ -25,7 +25,7 @@ public class StateTitle extends State
         g.fillRect(0, 0, Game.width, Game.height);
         
         // Logo
-        g.drawImage(Drawing.getImage("interface/logo.png", "SteelSkirmish"), 396, 50, null);
+        g.drawImage(Drawing.getImage("graphics/interface/title/logo.png", "Supernova"), 0, 50, null);
         
         // Options
         g.setFont(Game.getFont("Standard"));
@@ -44,7 +44,7 @@ public class StateTitle extends State
         if(Game.getInputKeyboard().getKeyPressed() == "Space")
         {
             Game.getInputKeyboard().keyPressedDone();
-            Game.getModule().setState(new StateWorld());
+            Game.getModule().setState(new StateWar());
         }
         if(Game.getInputKeyboard().getKeyPressed() == "Escape")
         {

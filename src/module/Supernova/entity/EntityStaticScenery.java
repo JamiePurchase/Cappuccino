@@ -9,7 +9,7 @@ public class EntityStaticScenery extends Entity
         
     }
     
-    public void render(Graphics g)
+    public void render(Graphics g, int zoom)
     {
         
     }

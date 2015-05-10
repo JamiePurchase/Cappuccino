@@ -16,6 +16,9 @@ public class Landscape
     // Board
     private int boardSizeX;
     private int boardSizeY;
+    private int boardViewX;
+    private int boardViewY;
+    private int boardZoom;
     
     // Terrain
     private BufferedImage[][] terrainImage;
@@ -33,11 +36,19 @@ public class Landscape
         // Temp
         this.boardSizeX = 5;
         this.boardSizeY = 5;
+        this.boardViewX = 0;
+        this.boardViewY = 0;
+        this.boardZoom = 1;
         
         // Temp
         this.tilesetMain = Game.getTileset("Mongun8-Exterior01");
         this.terrainImage = new BufferedImage[6][6];
         this.terrainSetAll(this.tilesetMain.getTileAt(2, 1));
+    }
+    
+    public int getBoardZoom()
+    {
+        return this.boardZoom;
     }
     
     public void render(Graphics g)
@@ -62,6 +73,14 @@ public class Landscape
                 int screenY = (cellY * 64 / 2) - (cellX * 64 / 2);
                 g.drawImage(this.terrainImage[cellX][cellY], screenX, screenY, null);
             }
+        }
+    }
+    
+    public void setBoardZoom(int value)
+    {
+        if(value >= 1 && value <= 3)
+        {
+            this.boardZoom = value;
         }
     }
     

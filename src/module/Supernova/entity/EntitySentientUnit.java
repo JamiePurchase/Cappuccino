@@ -6,6 +6,7 @@ import graphics.Tileset;
 import graphics.TilesetManager;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import state.State;
 
 public class EntitySentientUnit extends Entity
 {
@@ -33,6 +34,12 @@ public class EntitySentientUnit extends Entity
         this.actionTick = 0;*/
         
         // Temp
+        this.setDrawPosX(100);
+        this.setDrawPosY(100);
+        this.setDrawWide(48);
+        this.setDrawHigh(96);
+        
+        // Temp
         this.drawFace = "SE";
         this.drawAnimTick = 0;
         this.drawAnimTickMax = 5;
@@ -44,14 +51,19 @@ public class EntitySentientUnit extends Entity
         this.selectActive = false;
     }
     
-    private BufferedImage getAnimImage()
+    private BufferedImage getAnimImage(int zoom)
     {
-        int tileX = this.drawAnimFrame;
-        int tileY = 1;
-        if(this.drawFace == "SW") {tileY = 2;}
-        if(this.drawFace == "NE") {tileY = 3;}
-        if(this.drawFace == "NW") {tileY = 4;}
-        return this.drawAnimTileset.getTileAt(tileX, tileY);
+        int posX = this.drawAnimFrame;
+        int posY = 1;
+        if(this.drawFace == "SW") {posY = 2;}
+        if(this.drawFace == "NE") {posY = 3;}
+        if(this.drawFace == "NW") {posY = 4;}
+        BufferedImage image = this.drawAnimTileset.getTileAt(posX, posY);
+        if(zoom > 1)
+        {
+            return Drawing.resize(image, (this.getDrawWide() / zoom), (this.getDrawHigh() / zoom));
+        }
+        return image;
     }
     
     public boolean getSelected()
@@ -65,9 +77,10 @@ public class EntitySentientUnit extends Entity
         this.mouseNexusRef = ref;
     }
     
-    public void render(Graphics g)
+    public void render(Graphics g, int zoom)
     {
-        g.drawImage(this.getAnimImage(), 100, 100, null);
+        // NOTE: Must replace hardcoded positions with 
+        g.drawImage(this.getAnimImage(zoom), 100, 100, null);
     }
     
     public void setSelected(boolean value)
