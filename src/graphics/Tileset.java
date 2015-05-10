@@ -4,35 +4,47 @@ import java.awt.image.BufferedImage;
 
 public class Tileset
 {
-	
-    public Tileset()
+    private BufferedImage tileSheet;
+    private int tileWide;
+    private int tileHigh;
+    private int tileCols;
+    private int tileRows;
+    private int tileCount;
+    
+    public Tileset(BufferedImage sheetFile, int imgWide, int imgHigh, int imgCols, int imgRows)
     {
+        this.tileSheet = sheetFile;
+        this.tileCols = imgCols;
+        this.tileRows = imgRows;
+        this.tileWide = imgWide;
+        this.tileHigh = imgHigh;
+        this.tileCount = imgCols * imgRows;
     }
-
-    public static BufferedImage[] getTileset(String file, int width, int height)
+    
+    public BufferedImage getTileAt(int col, int row)
     {
-        return getTileset(file, width, height, 32 ,32);
-    }
-
-    public static BufferedImage[] getTileset(String file, int width, int height, int tileW, int tileH)
-    {
-        int tileTotal = width * height;
-        Spritesheet sheet = new Spritesheet(Drawing.getImage(file));
-        BufferedImage[] tileset = new BufferedImage[tileTotal];
-        int posX = 1;
-        int posY = 1;
-        for(int tile=0;tile<tileTotal;tile+=1)
+        if(col <= this.tileCols && row <= this.tileRows)
         {
-                int cropX = tileW * posX - tileW;
-                int cropY = tileH * posY - tileH;
-                tileset[tile] = sheet.crop(cropX, cropY, tileW, tileH);
-                posX+=1;
-                if(posX>width)
-                {
-                        posX=1;
-                        posY+=1;
-                }
+            int tilePosX = (col - 1) * this.tileWide;
+            int tilePosY = (row - 1) * this.tileHigh;
+            return this.tileSheet.getSubimage(tilePosX, tilePosY, this.tileWide, this.tileHigh);
         }
-        return tileset;
+        return this.tileSheet.getSubimage(0, 0, this.tileWide, this.tileHigh);
     }
+    
+    public BufferedImage[] getTileset()
+    {
+        BufferedImage[] tilesetArray = new BufferedImage[this.tileCount];
+        int tilesetCount = 0;
+        for(int row = 1; row <= this.tileRows; row++)
+        {
+            for(int col = 1; col <= this.tileCols; col++)
+            {
+                tilesetArray[tilesetCount] = this.getTileAt(col, row);
+                tilesetCount += 1;
+            }
+        }
+        return tilesetArray;
+    }
+    
 }

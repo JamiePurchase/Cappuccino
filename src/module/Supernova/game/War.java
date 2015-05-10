@@ -2,12 +2,17 @@ package module.Supernova.game;
 
 import engine.Game;
 import graphics.Drawing;
+import java.awt.Color;
 import java.awt.Graphics;
 import module.Supernova.force.ForceNature;
 import module.Supernova.force.ForcePlayer;
+import module.Supernova.world.Landscape;
 
 public class War
 {
+    // Landscape
+    private Landscape warLandscape;
+    
     // Forces
     private ForcePlayer[] warForces;
     private int warForcesCount;
@@ -15,6 +20,8 @@ public class War
     
     public War()
     {
+        this.warLandscape = new Landscape();
+        
         // Temp
         this.warForces = new ForcePlayer[4];
         this.warForces[0] = new ForcePlayer("Jamie", "Terralith");
@@ -50,13 +57,19 @@ public class War
     
     public void renderInterface(Graphics g)
     {
-        
+        g.setColor(Drawing.getColorRGB(69, 85, 69));
+        g.fillRect(0, 0, Game.width, 50);
+        g.fillRect(0, 0, 10, Game.height);
+        g.fillRect(Game.width - 10, 0, 10, Game.height);
+        g.fillRect(0, Game.height - 75, Game.width, 75);
+        g.setColor(Drawing.getColorRGB(49, 65, 49));
+        g.drawRect(10, 50, Game.width - 20, Game.height - 125);
+        g.drawRect(11, 51, Game.width - 22, Game.height - 127);
     }
     
     public void renderLand(Graphics g)
     {
-        g.setColor(Drawing.getColorRGB(180, 197, 133));
-        g.fillRect(0, 0, Game.width, Game.height);
+        this.warLandscape.render(g);
     }
     
     public void renderNature(Graphics g)

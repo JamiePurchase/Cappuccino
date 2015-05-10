@@ -79,7 +79,7 @@ public class StateDashboard extends State
         g.fillRect(100, 75, 250, 100);
         g.setColor(Color.BLACK);
         g.drawRect(100, 75, 250, 100);
-        g.setFont(Fonts.getFont("Standard"));
+        g.setFont(Game.getFont("Standard"));
         g.setColor(Color.BLACK);
         g.drawString(Game.getAccountObject().getUsername(), 125, 110);
         // Mail (shows amount unread?)

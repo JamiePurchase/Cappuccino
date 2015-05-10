@@ -1,5 +1,6 @@
 package components;
 
+import engine.Game;
 import graphics.Drawing;
 import graphics.Fonts;
 import java.awt.Color;
@@ -28,7 +29,7 @@ public class Notification
         if(this.active)
         {
             g.drawImage(Drawing.getImage("system/frame200x100.png"), 583, 334, null);
-            g.setFont(Fonts.getFont("Standard"));
+            g.setFont(Game.getFont("Standard"));
             g.setColor(Color.BLACK);
             g.drawString(this.message, 600, 360);
         }

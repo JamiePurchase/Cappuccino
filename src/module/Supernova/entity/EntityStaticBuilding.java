@@ -2,7 +2,7 @@ package module.Supernova.entity;
 
 import java.awt.Graphics;
 
-public class EntityStaticBuilding extends EntityStatic
+public class EntityStaticBuilding extends Entity
 {
     public EntityStaticBuilding()
     {

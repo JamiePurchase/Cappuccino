@@ -3,12 +3,12 @@ package module.Antics.module;
 import engine.Game;
 import static engine.Game.getAccountObject;
 import graphics.Fonts;
+import graphics.SystemFonts;
 import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import module.Antics.state.StateBoard;
 import module.Module;
-import module.SteelSkirmish.state.StateTitle;
 import state.State;
 
 public class ModuleAntics extends Module
@@ -31,7 +31,7 @@ public class ModuleAntics extends Module
     
     public Fonts getFonts()
     {
-        return new Fonts();
+        return new SystemFonts();
     }
     
     public State getState()

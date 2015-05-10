@@ -117,7 +117,7 @@ public class World
         if(this.battlePlayer == false) {debugMessage1 = "It is not your turn";}
         String debugMessage2 = "Nothing selected";
         if(this.playerSelect) {debugMessage2 = "Unit selected";}
-        g.setFont(Fonts.getFont("Standard"));
+        g.setFont(Game.getFont("Standard"));
         g.setColor(Color.GREEN);
         g.drawString(debugMessage1, 525, 60);
         g.drawString(debugMessage2, 525, 90);
@@ -148,7 +148,7 @@ public class World
         String nameString = this.playerName[player-1];
         int nameX = 40;
         if(player == 2) {nameX = 1005;}
-        g.setFont(Fonts.getFont("Standard"));
+        g.setFont(Game.getFont("Standard"));
         g.setColor(Color.BLACK);
         g.drawString(nameString, nameX, 60);
     }

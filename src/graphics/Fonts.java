@@ -3,13 +3,12 @@ package graphics;
 import engine.Game;
 import java.awt.Font;
 
-public class Fonts
+public abstract class Fonts
 {
-    public static Font getFont(String style)
+    public abstract Font getFont(String style);
+    
+    public Fonts()
     {
-        //return Game.getModule().getFonts().getFont(style);
         
-        // Temp to avoid error until fixed
-        return new Font("Courier", Font.BOLD, 18);
     }
 }

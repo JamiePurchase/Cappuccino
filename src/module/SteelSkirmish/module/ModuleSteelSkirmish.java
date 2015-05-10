@@ -31,7 +31,7 @@ public class ModuleSteelSkirmish extends Module
     
     public Fonts getFonts()
     {
-        return new ModuleFonts();
+        return new module.SteelSkirmish.graphics.ModuleFonts();
     }
     
     public State getState()

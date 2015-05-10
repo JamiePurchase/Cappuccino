@@ -3,7 +3,7 @@ package module;
 import engine.Game;
 import graphics.Fonts;
 import static engine.Game.getAccountObject;
-import graphics.DashboardFonts;
+import graphics.SystemFonts;
 import java.awt.Graphics;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +31,7 @@ public class ModuleDashboard extends Module
     
     public Fonts getFonts()
     {
-        return new DashboardFonts();
+        return new SystemFonts();
     }
     
     public State getState()

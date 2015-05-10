@@ -4,9 +4,12 @@ import audio.AudioManager;
 import components.Notification;
 import graphics.Drawing;
 import graphics.Fonts;
+import graphics.Tileset;
+import graphics.TilesetManager;
 import input.InputKeyboard;
 import input.InputMouse;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.util.logging.Level;
@@ -19,6 +22,7 @@ import module.ModuleDashboard;
 import module.Registry;
 import module.SteelSkirmish.module.ModuleSteelSkirmish;
 import module.Supernova.module.ModuleSupernova;
+import module.SupernovaEditor.module.ModuleSupernovaEditor;
 import network.Account;
 
 public class Game extends JPanel implements Runnable
@@ -82,6 +86,7 @@ public class Game extends JPanel implements Runnable
             //setModule(new ModuleMinstrel());
             //setModule(new ModuleAntics());
             setModule(new ModuleSupernova());
+            //setModule(new ModuleSupernovaEditor());
             setModulePaused(false);
             setHomeMenuActive(false);
 
@@ -107,6 +112,11 @@ public class Game extends JPanel implements Runnable
         public static Account getAccountObject()
         {
             return accountObject;
+        }
+        
+        public static Font getFont(String style)
+        {
+            return Game.getModule().getFonts().getFont(style);
         }
         
         public static boolean getHomeMenuActive()
@@ -142,6 +152,11 @@ public class Game extends JPanel implements Runnable
         public static String getResourcePath()
         {
             return resourcePath;
+        }
+        
+        public static Tileset getTileset(String reference)
+        {
+            return TilesetManager.getTileset(reference);
         }
         
         public static void notificationCreate(String message, int tick)
@@ -196,7 +211,7 @@ public class Game extends JPanel implements Runnable
             g.drawImage(Drawing.getImage("system/frame700x300.png"), 333, 234, null);
 
             // Menu Options
-            g.setFont(Fonts.getFont("Standard"));
+            g.setFont(Game.getFont("Standard"));
             g.setColor(Color.BLACK);
             g.drawString("Dashboard", 458, 259);
         }

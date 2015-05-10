@@ -28,12 +28,12 @@ public class StateMain extends State
         //g.drawImage(Drawing.getImage("interface/logo.png", "SteelSkirmish"), 396, 50, null);
         
         // Title
-        g.setFont(Fonts.getFont("MinstrelTitle"));
+        g.setFont(Game.getFont("MinstrelTitle"));
         g.setColor(Color.WHITE);
         g.drawString("Minstrel", 500, 50);
         
         // Options
-        g.setFont(Fonts.getFont("Standard"));
+        g.setFont(Game.getFont("Standard"));
         g.setColor(Color.WHITE);
         g.drawString("Press the spacebar to continue", 500, 500);
     }
