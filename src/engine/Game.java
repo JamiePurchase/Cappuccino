@@ -18,6 +18,7 @@ import module.Module;
 import module.ModuleDashboard;
 import module.Registry;
 import module.SteelSkirmish.module.ModuleSteelSkirmish;
+import module.Supernova.module.ModuleSupernova;
 import network.Account;
 
 public class Game extends JPanel implements Runnable
@@ -25,7 +26,7 @@ public class Game extends JPanel implements Runnable
 	private static final long serialVersionUID = 1L;
 	public static Display display;
 	public String title;
-	public int width, height;
+	public static int width, height;
 	private Thread thread;
 	private boolean running = false;
 	private BufferStrategy bs;
@@ -62,7 +63,8 @@ public class Game extends JPanel implements Runnable
             systemDebug = new Debug(false);
             
             // Module Registry
-            this.moduleRegistry = new Registry();
+            //this.moduleRegistry = new Registry();
+            // uncomment this later (reading from froth and requesting update info is pointless during development)
             
             // Account Details
             setAccount(1);
@@ -76,9 +78,10 @@ public class Game extends JPanel implements Runnable
 
             // Module
             //setModule(new ModuleDashboard());
-            setModule(new ModuleSteelSkirmish());
+            //setModule(new ModuleSteelSkirmish());
             //setModule(new ModuleMinstrel());
             //setModule(new ModuleAntics());
+            setModule(new ModuleSupernova());
             setModulePaused(false);
             setHomeMenuActive(false);
 
