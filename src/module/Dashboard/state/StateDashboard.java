@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import module.Antics.module.ModuleAntics;
-import module.AnticsEditor.ui.AppTile;
+import module.Dashboard.ui.AppTile;
 import module.Module;
 import module.ModuleStub;
 import state.State;

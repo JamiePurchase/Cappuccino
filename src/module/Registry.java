@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import module.Antics.module.ModuleAntics;
-import module.AnticsEditor.ui.AppTile;
+import module.Dashboard.ui.AppTile;
 import module.Dashboard.state.StateDashboard;
 import module.SteelSkirmish.module.ModuleSteelSkirmish;
 import web.Web;
@@ -24,10 +24,10 @@ public class Registry
     public Registry()
     {
         this.REGISTRY_PATH = "SYS-HOMEDASH/registry.froth";
-        this.frothLoad();
+        //this.frothLoad();
         
         // Test Version Check
-        this.networkUpdate();
+        //this.networkUpdate();
         
         // NOTE: The registry should look like this when the app is first installed
         /*this.moduleID = new String[2];
@@ -55,7 +55,7 @@ public class Registry
             // Split apart the data for each module
             for(int x = 0; x < fileResult.length; x++)
             {
-                String[] fileResultData = fileResult[x].split("\\/");
+                String[] fileResultData = fileResult[x].split("\\|");
                 this.moduleID[x] = fileResultData[0];
                 this.moduleVersion[x] = Integer.parseInt(fileResultData[1]);
             }

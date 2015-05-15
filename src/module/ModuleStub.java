@@ -5,7 +5,7 @@ import graphics.Drawing;
 import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import module.AnticsEditor.ui.AppTile;
+import module.Dashboard.ui.AppTile;
 
 public class ModuleStub
 {
@@ -26,6 +26,12 @@ public class ModuleStub
     
     public ModuleStub(String[] froth)
     {
+        System.out.println("Creatin ModuleStub");
+        System.out.println("froth[0] = " + froth[0]);
+        System.out.println("froth[1] = " + froth[1]);
+        System.out.println("froth[2] = " + froth[2]);
+        System.out.println("froth[3] = " + froth[3]);
+        System.out.println("froth[4] = " + froth[4]);
         this.moduleID = froth[0];
         this.moduleTitle = froth[1];
         this.moduleFolder = froth[2];

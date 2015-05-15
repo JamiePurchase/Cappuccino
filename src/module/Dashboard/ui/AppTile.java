@@ -1,4 +1,4 @@
-package module.AnticsEditor.ui;
+package module.Dashboard.ui;
 
 import graphics.Drawing;
 import input.InputMouseNexus;
@@ -28,6 +28,6 @@ public class AppTile
     public void render(Graphics g)
     {
         g.drawImage(Drawing.getImage("system/tileBkg.png"), 200, 400, null);
-        g.drawImage(Drawing.getImage("interface/iconDashboard.png", "SteelSkirmish"), 200, 400, null);
+        //g.drawImage(Drawing.getImage("interface/iconDashboard.png", "SteelSkirmish"), 200, 400, null);
     }
 }

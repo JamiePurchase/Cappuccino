@@ -15,6 +15,9 @@ public class Gateway
 {
     public void appLaunch(String moduleID)
     {
+        
+        System.out.println("appLaunch " + moduleID);
+       
         // System
         if(moduleID.equals("SYS-HOMEDASH")) {Game.setModule(new ModuleDashboard());}
         if(moduleID.equals("SYS-MINSTREL")) {Game.setModule(new ModuleMinstrel());}
@@ -29,5 +32,8 @@ public class Gateway
         // Development
         if(moduleID.equals("DEV-ANTICS01")) {Game.setModule(new ModuleAnticsEditor());}
         if(moduleID.equals("DEV-SUPERNOV")) {Game.setModule(new ModuleSupernovaEditor());}
+        
+        // Default
+        Game.setModule(new ModuleDashboard());
     }
 }

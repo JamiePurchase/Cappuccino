@@ -49,6 +49,7 @@ public class Game extends JPanel implements Runnable
         private static Gateway moduleGateway;
         private static Module module;
         private static String moduleID;
+        private static String moduleInit;
         private static boolean modulePaused;
         private static boolean homeMenuActive;
         private static Debug systemDebug;
@@ -56,7 +57,7 @@ public class Game extends JPanel implements Runnable
         private static Notification notificationObject;
         private static String resourcePath;
 
-	public Game()
+	public Game(String moduleInit)
 	{
             // Main Settings
             this.title = "Cappuccino";
@@ -72,8 +73,11 @@ public class Game extends JPanel implements Runnable
             systemDebug = new Debug(false);
             
             // Module Registry
-            //this.moduleRegistry = new Registry();
+            this.moduleRegistry = new Registry();
             // uncomment this later (reading from froth and requesting update info is pointless during development)
+            
+            System.out.println("Game Constructor - moduleInit set to " + moduleInit);
+            this.moduleInit = moduleInit;
             
             // Account Details
             setAccount(1);
@@ -81,7 +85,7 @@ public class Game extends JPanel implements Runnable
 	}
 	
 	private void init()
-	{            
+	{
             // Create Display
             display = new Display(title, width, height);
 
@@ -95,6 +99,12 @@ public class Game extends JPanel implements Runnable
             //setModule(new ModuleSupernovaEditor());
             //setModule(new ModuleEarthland());
             setModule(new ModuleIgnition());
+            
+            // Module (the main function declares a uniqueID)
+            
+            System.out.println("Game Init - moduleInit is " + this.moduleInit);
+            //Game.setModule(this.moduleInit);
+            
             setModulePaused(false);
             setHomeMenuActive(false);
 
@@ -291,11 +301,13 @@ public class Game extends JPanel implements Runnable
         
         public static void setModule(Module newModule)
         {
+            System.out.println("Game setModule (Module): " + newModule);
             module = newModule;
         }
         
         public static void setModule(String moduleID)
         {
+            System.out.println("Game setModule (String): " + moduleID);
             moduleGateway.appLaunch(moduleID);
         }
         

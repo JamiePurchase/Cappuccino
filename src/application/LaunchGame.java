@@ -6,6 +6,6 @@ public class LaunchGame
 {
     public static void main(String args[])
     {
-        new Game().start();
+        new Game("SYS-HOMEDASH").start();
     }
 }

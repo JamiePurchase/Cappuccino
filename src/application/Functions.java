@@ -7,8 +7,9 @@ public class Functions
 {
     public static Object[] arrayAppend(Object[] array, Object append)
     {
-        array[array.length] = append;
-        return array;
+        Object[] create = new Object[array.length + 1];
+        create[array.length] = append;
+        return create;
     }
     
     public static Object[] arrayCombine(Object[] array, Object[] combine)
