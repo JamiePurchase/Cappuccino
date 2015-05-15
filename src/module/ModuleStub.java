@@ -35,7 +35,7 @@ public class ModuleStub
     
     public AppTile getAppTile()
     {
-        return new AppTile(this.moduleTitle, this.getModuleObject(), this.getAppTileLogo());
+        return new AppTile(this.moduleTitle, this.getAppTileLogo());
     }
         
     public BufferedImage getAppTileLogo()
@@ -43,7 +43,12 @@ public class ModuleStub
         return Drawing.getImage("app/tileLogo.png", this.moduleFolder);
     }
     
-    public Module getModuleObject()
+    public String getModuleID()
+    {
+        return this.moduleID;
+    }
+    
+    /*public Module getModuleObject()
     {
         String className = "Module" + this.moduleFolder;
         Object myObject = "";
@@ -65,5 +70,5 @@ public class ModuleStub
         
         // Return the current dashboard module if we failed
         return Game.getModule();
-    }
+    }*/
 }

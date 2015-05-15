@@ -22,6 +22,7 @@ import module.Ignition.module.ModuleIgnition;
 import module.Minstrel.module.ModuleMinstrel;
 import module.Module;
 import module.Dashboard.module.ModuleDashboard;
+import module.Gateway;
 import module.Registry;
 import module.SteelSkirmish.module.ModuleSteelSkirmish;
 import module.Supernova.module.ModuleSupernova;
@@ -45,6 +46,7 @@ public class Game extends JPanel implements Runnable
         private static Account accountObject;
         private static int accountUpdateTick;
         private static Registry moduleRegistry;
+        private static Gateway moduleGateway;
         private static Module module;
         private static String moduleID;
         private static boolean modulePaused;
@@ -290,6 +292,11 @@ public class Game extends JPanel implements Runnable
         public static void setModule(Module newModule)
         {
             module = newModule;
+        }
+        
+        public static void setModule(String moduleID)
+        {
+            moduleGateway.appLaunch(moduleID);
         }
         
         public static void setModuleID(String id)

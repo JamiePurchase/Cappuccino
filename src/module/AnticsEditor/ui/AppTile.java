@@ -10,12 +10,10 @@ public class AppTile
 {
     private String appTitle;
     private BufferedImage appImage;
-    private Module appModule;
     
-    public AppTile(String title, Module module, BufferedImage image)
+    public AppTile(String title, BufferedImage image)
     {
         this.appTitle = title;
-        this.appModule = module;
         this.appImage = image;
     }
     

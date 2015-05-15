@@ -33,7 +33,7 @@ public class StateDashboard extends State
     
     private void appLaunch(int app)
     {
-        Game.setModule(moduleStub[app].getModuleObject());
+        Game.setModule(this.moduleStub[app].getModuleID());
     }
     
     public void initTiles()
