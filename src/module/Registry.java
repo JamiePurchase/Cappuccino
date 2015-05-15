@@ -1,10 +1,16 @@
 package module;
 
+import application.Functions;
+import engine.Game;
 import file.FileRead;
 import file.FileWrite;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import module.Antics.module.ModuleAntics;
+import module.AnticsEditor.ui.AppTile;
+import module.Dashboard.state.StateDashboard;
+import module.SteelSkirmish.module.ModuleSteelSkirmish;
 import web.Web;
 
 public class Registry
@@ -13,9 +19,11 @@ public class Registry
     private int[] moduleVersion;
     private static String REGISTRY_PATH;
     
+    // NOTE: make full use of the unique module IDs
+    
     public Registry()
     {
-        this.REGISTRY_PATH = "SYSTEM/registry.froth";
+        this.REGISTRY_PATH = "SYS-HOMEDASH/registry.froth";
         this.frothLoad();
         
         // Test Version Check
@@ -61,15 +69,42 @@ public class Registry
     public void frothSave()
     {
         // Compress all of the data for each module into one line
-        String[] fileSubmit = new String[this.moduleID.length];
+        String[] fileSubmit = new String[this.moduleID.length + 1];
+        fileSubmit[0] = "!! Module Registry";
         for(int x = 0; x < this.moduleID.length; x++)
         {
-            fileSubmit[x] = this.moduleID[x] + "/" + this.moduleVersion[x];
+            fileSubmit[x+1] = this.moduleID[x] + "|" + this.moduleVersion[x];
         }
         
         // Write the data to the froth file
+        String fileEnd = "!! End of file - " + Functions.getTimestamp();
         FileWrite fileWriter = new FileWrite(this.REGISTRY_PATH, false);
-        fileWriter.FileWriteArray(fileSubmit);
+        fileWriter.FileWriteArray((String[]) Functions.arrayAppend(fileSubmit, fileEnd));
+    }
+    
+    public ModuleStub[] getModules()
+    {        
+        // Get list of apps from local data
+        String[] fileData = new String[50];
+        FileRead fr = new FileRead("modules.froth");
+        try
+        {
+            fileData = fr.FileReadData();
+        }
+        catch (IOException ex) {Logger.getLogger(StateDashboard.class.getName()).log(Level.SEVERE, null, ex);}
+        
+        // return appCount;
+        int appCount = fileData.length;
+        ModuleStub[] moduleStub = new ModuleStub[appCount];
+        
+        // Store data about the apps
+        for(int x = 0; x < appCount; x++)
+        {
+            moduleStub[x] = new ModuleStub(fileData[x].split("\\|"));
+        }
+        
+        // Return the array of module stubs
+        return moduleStub;
     }
     
     public String[] networkUpdate()

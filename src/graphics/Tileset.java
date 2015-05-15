@@ -21,6 +21,17 @@ public class Tileset
         this.tileCount = imgCols * imgRows;
     }
     
+    public Tileset(String tilesetRef)
+    {
+        String[] tileset = tilesetRef.split("\\|");
+        this.tileSheet = Drawing.getImage(tileset[0], tileset[1]);
+        this.tileCols = Integer.parseInt(tileset[2]);
+        this.tileRows = Integer.parseInt(tileset[3]);
+        this.tileWide = Integer.parseInt(tileset[4]);
+        this.tileHigh = Integer.parseInt(tileset[5]);
+        this.tileCount = this.tileCols * this.tileRows;
+    }
+    
     public BufferedImage getTileAt(int col, int row)
     {
         if(col <= this.tileCols && row <= this.tileRows)

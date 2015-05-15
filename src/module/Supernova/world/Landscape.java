@@ -46,6 +46,26 @@ public class Landscape
         this.terrainSetAll(this.tilesetMain.getTileAt(2, 1));
     }
     
+    public int getBoardSizeX()
+    {
+        return this.boardSizeX;
+    }
+    
+    public int getBoardSizeY()
+    {
+        return this.boardSizeY;
+    }
+    
+    public int getBoardViewX()
+    {
+        return this.boardViewX;
+    }
+    
+    public int getBoardViewY()
+    {
+        return this.boardViewY;
+    }
+    
     public int getBoardZoom()
     {
         return this.boardZoom;

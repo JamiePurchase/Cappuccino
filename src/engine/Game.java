@@ -16,9 +16,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 import module.Antics.module.ModuleAntics;
+import module.AnticsEditor.module.ModuleAnticsEditor;
+import module.Earthland.module.ModuleEarthland;
+import module.Ignition.module.ModuleIgnition;
 import module.Minstrel.module.ModuleMinstrel;
 import module.Module;
-import module.ModuleDashboard;
+import module.Dashboard.module.ModuleDashboard;
 import module.Registry;
 import module.SteelSkirmish.module.ModuleSteelSkirmish;
 import module.Supernova.module.ModuleSupernova;
@@ -85,8 +88,11 @@ public class Game extends JPanel implements Runnable
             //setModule(new ModuleSteelSkirmish());
             //setModule(new ModuleMinstrel());
             //setModule(new ModuleAntics());
-            setModule(new ModuleSupernova());
+            //setModule(new ModuleAnticsEditor());
+            //setModule(new ModuleSupernova());
             //setModule(new ModuleSupernovaEditor());
+            //setModule(new ModuleEarthland());
+            setModule(new ModuleIgnition());
             setModulePaused(false);
             setHomeMenuActive(false);
 
@@ -147,6 +153,11 @@ public class Game extends JPanel implements Runnable
         public static boolean getModulePaused()
         {
             return modulePaused;
+        }
+        
+        public static Registry getModuleRegistry()
+        {
+            return moduleRegistry;
         }
         
         public static String getResourcePath()

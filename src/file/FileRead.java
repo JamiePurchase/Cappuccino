@@ -24,9 +24,13 @@ public class FileRead
 		BufferedReader tr = new BufferedReader(fr);
 		int lineCount = FileReadLines();
 		String[] textData = new String[lineCount];
-		for(int line=0;line<lineCount;line+=1)
+		for(int line = 0; line < lineCount; line++)
 		{
-			textData[line] = tr.readLine();
+                    String thisLine  = tr.readLine();
+                    if(!thisLine.substring(0, 2).equals("!!"))
+                    {
+                        textData[line] = thisLine;
+                    }
 		}
 		tr.close();
 		return textData;
@@ -39,7 +43,12 @@ public class FileRead
 		int lineCount = 0;
 		while(bf.readLine() != null)
 		{
-			lineCount+=1;
+                    if(bf.readLine().substring(0, 2).equals("!!"))
+                    {
+                        // Comments in froth files are marked with !!
+                        // They are completely ignored by the system
+                    }
+                    else {lineCount += 1;}
 		}
 		bf.close();
 		return lineCount;

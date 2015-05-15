@@ -1,40 +1,50 @@
 package module.Supernova.force;
 
-import module.Supernova.entity.EntitySentientUnit;
-import module.Supernova.entity.EntityStaticBuilding;
+import module.Supernova.entity.EntityBuilding;
+import module.Supernova.entity.EntityUnit;
+import module.Supernova.game.War;
 
 public class ForcePlayer extends Force
 {
     // Details
+    private int forceID;
     private String forceTitle;
     private String forceHouse;
+    private War forceWar;
     
     // Resources
     private int resourceObsidian;
     
     // Buildings
-    private EntityStaticBuilding[] entityBuildings;
+    private EntityBuilding[] entityBuildings;
     private int entityBuildingsCount;
     
     // Units
-    private EntitySentientUnit[] entityUnits;
+    private EntityUnit[] entityUnits;
     private int entityUnitsCount;
     
-    public ForcePlayer(String title, String house)
+    public ForcePlayer(War war, int id, String title, String house)
     {
+        this.forceWar = war;
+        this.forceID = id;
         this.forceTitle = title;
         this.forceHouse = house;
-        this.entityBuildings = new EntityStaticBuilding[100];
+        this.entityBuildings = new EntityBuilding[100];
         this.entityBuildingsCount = 0;
-        this.entityUnits = new EntitySentientUnit[100];
+        this.entityUnits = new EntityUnit[100];
         this.entityUnitsCount = 0;
         
-        // Temp
-        this.entityUnits[0] = new EntitySentientUnit();
-        this.entityUnitsCount = 1;
+        // Temp (just for force 0)
+        if(this.forceID == 0)
+        {
+            this.entityUnits[0] = new EntityUnit(this.forceWar, this.forceID, 0);
+            this.entityUnitsCount = 1;
+            this.entityBuildings[0] = new EntityBuilding(this.forceWar, this.forceID, 0);
+            this.entityBuildingsCount = 1;
+        }
     }
     
-    public EntityStaticBuilding[] getEntityBuildings()
+    public EntityBuilding[] getEntityBuildings()
     {
         return this.entityBuildings;
     }
@@ -44,7 +54,7 @@ public class ForcePlayer extends Force
         return this.entityBuildingsCount;
     }
     
-    public EntitySentientUnit[] getEntityUnits()
+    public EntityUnit[] getEntityUnits()
     {
         return this.entityUnits;
     }

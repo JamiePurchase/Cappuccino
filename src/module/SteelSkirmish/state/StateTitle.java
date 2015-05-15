@@ -6,7 +6,7 @@ import graphics.Fonts;
 import input.InputKeyboard;
 import java.awt.Color;
 import java.awt.Graphics;
-import module.ModuleDashboard;
+import module.Dashboard.module.ModuleDashboard;
 import state.State;
 
 public class StateTitle extends State

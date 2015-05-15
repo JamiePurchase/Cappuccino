@@ -3,15 +3,16 @@ package web;
 import engine.Game;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.net.www.http.HttpClient;
 
 public class Web
 {
@@ -81,4 +82,35 @@ public class Web
         }
         return webData.split("\\|");
     }
+    
+    /*public static void upload() throws Exception
+    {
+        String userHome=System.getProperty("user.home");
+        HttpClient httpclient = new DefaultHttpClient();
+        httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
+        HttpPost httppost = new HttpPost("http://www.xxx.xxxx.xxx/Projects/test/upload.php");
+        File file = new File(userHome+"/Hello.txt");
+        MultipartEntity mpEntity = new MultipartEntity();
+        ContentBody contentFile = new FileBody(file);
+        mpEntity.addPart("userfile", contentFile);
+        httppost.setEntity(mpEntity);
+        System.out.println("executing request " + httppost.getRequestLine());
+        HttpResponse response = httpclient.execute(httppost);
+        HttpEntity resEntity = response.getEntity(); 
+ 
+        if(!(response.getStatusLine().toString()).equals("HTTP/1.1 200 OK")){
+            // Successfully Uploaded
+        }
+        else{
+            // Did not upload. Add your logic here. Maybe you want to retry.
+        }
+        System.out.println(response.getStatusLine());
+        if (resEntity != null) {
+            System.out.println(EntityUtils.toString(resEntity));
+        }
+        if (resEntity != null) {
+            resEntity.consumeContent();
+        }
+        httpclient.getConnectionManager().shutdown();
+    }*/
 }

@@ -1,27 +1,58 @@
 package module.Antics.board;
 
+import graphics.Tileset;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class BoardTile
 {
-    private int tilePosX;
-    private int tilePosY;
-    private BufferedImage tileImage;
+    private BufferedImage terrainImage;
+    private String terrainFile;
     private boolean tileSolid;
+    private boolean scenery;
+    private BufferedImage sceneryImage;
+    private String sceneryFile;
     
-    public BoardTile(BufferedImage image, int posX, int posY, boolean solid)
+    public BoardTile(String ref, int id, int tileX, int tileY)
     {
-        this.tilePosX = posX;
-        this.tilePosY = posY;
-        this.tileImage = image;
-        this.tileSolid = solid;
+        this.terrainImage = new Tileset(ref).getTileAt(tileX, tileY);
+        this.terrainFile = id + "|" + tileX + "|" + tileY;
+        this.tileSolid = false;
+        this.scenery = false;
+        this.sceneryFile = "";
     }
     
-    public void render(Graphics g)
+    public boolean getScenery()
     {
-        g.drawImage(this.tileImage, this.tilePosX, this.tilePosY, null);
-        // NOTE: Positions should consider the current board scroll view
+        return this.scenery;
+    }
+    
+    public String getSceneryFile()
+    {
+        return this.sceneryFile;
+    }
+    
+    public String getTerrainFile()
+    {
+        return this.terrainFile;
+    }
+    
+    public void render(Graphics g, int drawX, int drawY)
+    {
+        g.drawImage(this.terrainImage, drawX, drawY, null);
+        if(this.scenery) {g.drawImage(this.sceneryImage, drawX, drawY, null);}
+    }
+    
+    public void setScenery(BufferedImage image, boolean solid)
+    {
+        this.scenery = true;
+        this.sceneryImage = image;
+        this.tileSolid = true;
+    }
+    
+    public void setTerrain(BufferedImage image)
+    {
+        this.terrainImage = image;
     }
     
     public void tick()

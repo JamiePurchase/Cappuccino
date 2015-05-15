@@ -1,7 +1,7 @@
 package module;
 
 import engine.Game;
-import state.StateDashboard;
+import module.Dashboard.state.StateDashboard;
 import java.awt.Graphics;
 import state.State;
 import graphics.Fonts;

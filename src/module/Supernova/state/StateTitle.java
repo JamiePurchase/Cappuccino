@@ -5,7 +5,7 @@ import graphics.Drawing;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import module.ModuleDashboard;
+import module.Dashboard.module.ModuleDashboard;
 import module.Supernova.state.StateWar;
 import state.State;
 

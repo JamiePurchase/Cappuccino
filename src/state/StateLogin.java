@@ -1,5 +1,6 @@
 package state;
 
+import module.Dashboard.state.StateDashboard;
 import engine.Game;
 import graphics.Drawing;
 import java.awt.Color;

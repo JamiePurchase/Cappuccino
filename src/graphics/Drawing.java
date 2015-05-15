@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +33,14 @@ public class Drawing
         public static void fadeScreen(Graphics g)
         {
             Drawing.drawImageOpaque(g, getImage("system/fadeBlack.png"), 0, 0, 0.75f);
+        }
+        
+        public static BufferedImage flipImage(BufferedImage image)
+        {
+            AffineTransform transform1 = AffineTransform.getScaleInstance(-1, 1);
+            transform1.translate(-image.getWidth(null), 0);
+            AffineTransformOp transform2 = new AffineTransformOp(transform1, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+            return transform2.filter(image, null);
         }
 	
 	public static Color getColorRGB(int r, int g, int b)

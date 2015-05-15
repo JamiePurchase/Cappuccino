@@ -1,34 +1,63 @@
 package module.Supernova.force;
 
-import module.Supernova.entity.EntitySentientCreature;
-import module.Supernova.entity.EntityStaticScenery;
+import module.Supernova.entity.EntityResource;
+import module.Supernova.entity.EntityScenery;
+import module.Supernova.entity.EntityUnit;
+import module.Supernova.game.War;
 
 public class ForceNature extends Force
 {
-    private EntitySentientCreature[] entityCreatures;
-    private int entityCreaturesCount;
-    private EntityStaticScenery[] entityScenery;
+    // War
+    private War warObject;
+    
+    // Creatures
+    private EntityUnit[] entityCreature;
+    private int entityCreatureCount;
+    
+    // Resources
+    private EntityResource[] entityResource;
+    private int entityResourceCount;
+    
+    // Scenery
+    private EntityScenery[] entityScenery;
     private int entitySceneryCount;
     
-    public ForceNature()
+    public ForceNature(War war)
     {
-        this.entityCreatures = new EntitySentientCreature[50];
-        this.entityCreaturesCount = 0;
-        this.entityScenery = new EntityStaticScenery[50];
+        this.warObject = war;
+        this.entityCreature = new EntityUnit[50];
+        this.entityCreatureCount = 0;
+        this.entityResource = new EntityResource[50];
+        this.entityResourceCount = 0;
+        this.entityScenery = new EntityScenery[50];
         this.entitySceneryCount = 0;
+        
+        // Temp
+        this.entityScenery[0] = new EntityScenery(this.warObject, "graphics/scenery/Mongun8/tree01.png", 700, 50, 128, 128);
+        this.entitySceneryCount = 1;
     }
     
-    public EntitySentientCreature[] getEntityCreatures()
+    public EntityUnit[] getEntityCreature()
     {
-        return this.entityCreatures;
+        return this.entityCreature;
     }
     
-    public int getEntityCreaturesCount()
+    public int getEntityCreatureCount()
     {
-        return this.entityCreaturesCount;
+        return this.entityCreatureCount;
     }
     
-    public EntityStaticScenery[] getEntityScenery()
+    public EntityResource[] getEntityResource()
+    {
+        return this.entityResource;
+    }
+    
+    public int getEntityResourceCount()
+    {
+        return this.entityResourceCount;
+    }
+    
+    public EntityScenery[] getEntityScenery()
     {
         return this.entityScenery;
     }
