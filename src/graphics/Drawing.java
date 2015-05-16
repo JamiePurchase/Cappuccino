@@ -35,6 +35,17 @@ public class Drawing
             Drawing.drawImageOpaque(g, getImage("system/fadeBlack.png"), 0, 0, 0.75f);
         }
         
+        public static void fillScreen(Graphics g)
+        {
+            fillScreen(g, 0, 0, 0);
+        }
+        
+        public static void fillScreen(Graphics g, int colorR, int colorG, int colorB)
+        {
+            g.setColor(getColorRGB(colorR, colorG, colorB));
+            g.fillRect(0, 0, Game.width, Game.height);
+        }
+        
         public static BufferedImage flipImage(BufferedImage image)
         {
             AffineTransform transform1 = AffineTransform.getScaleInstance(-1, 1);
@@ -56,6 +67,7 @@ public class Drawing
         
         public static BufferedImage getImage(String filepath, String module)
         {
+            //System.out.println("Drawing getImage: " + Game.getResourcePath() + "src/module/" + module + "/resources/" + filepath);
             return getImageFile(Game.getResourcePath() + "src/module/" + module + "/resources/" + filepath);
         }
         

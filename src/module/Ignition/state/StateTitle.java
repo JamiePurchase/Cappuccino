@@ -12,7 +12,7 @@ public class StateTitle extends State
 {
     public StateTitle()
     {
-        
+        System.out.println("Module:Ingition, State:Title");
     }
 
     public void render(Graphics g)
@@ -27,6 +27,7 @@ public class StateTitle extends State
         // Options
         g.setFont(Game.getFont("Standard"));
         g.setColor(Color.WHITE);
+        g.drawString("Ignition - Title Screen", 25, 25);
         g.drawString("Press the spacebar to continue", 500, 500);
     }
 
@@ -41,7 +42,7 @@ public class StateTitle extends State
         if(Game.getInputKeyboard().getKeyPressed() == "Space")
         {
             Game.getInputKeyboard().keyPressedDone();
-            Game.getModule().setState(new StateBattlefield());
+            Game.getModule().setState(new StateCampaign());
         }
         if(Game.getInputKeyboard().getKeyPressed() == "Escape")
         {

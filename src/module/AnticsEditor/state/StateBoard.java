@@ -32,8 +32,8 @@ public class StateBoard extends State
         this.brush = "";
         
         // Nexus
-        Game.getInputMouse().nexusClear();
-        Game.getInputMouse().nexusAdd("board", 11, 64, 1340, 672);
+        //Game.getInputMouse().nexusClear();
+        //Game.getInputMouse().nexusAdd("board", 11, 64, 1340, 672);
     }
     
     public String getTitle()

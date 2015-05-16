@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 public class Display
 {
 	private JFrame frame;
+        private JPanel panel;
 	private Canvas canvas;
 	private String title;
 	private int width, height;
@@ -19,6 +20,7 @@ public class Display
 		this.width = width;
 		this.height = height;
 		createDisplay();
+                this.panel.requestFocus();
 	}
 	
 	private void createDisplay()
@@ -34,7 +36,7 @@ public class Display
 		frame.setVisible(true);
 		
 		// Create a JPanel
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.addKeyListener(Game.getInputKeyboard());
 		frame.add(panel);
 		panel.requestFocusInWindow();

@@ -49,7 +49,7 @@ public class Game extends JPanel implements Runnable
         private static Gateway moduleGateway;
         private static Module module;
         private static String moduleID;
-        private static String moduleInit;
+        private static Module moduleInit;
         private static boolean modulePaused;
         private static boolean homeMenuActive;
         private static Debug systemDebug;
@@ -57,13 +57,12 @@ public class Game extends JPanel implements Runnable
         private static Notification notificationObject;
         private static String resourcePath;
 
-	public Game(String moduleInit)
+	public Game(Module moduleInit)
 	{
             // Main Settings
             this.title = "Cappuccino";
             this.width = 1366;
             this.height = 768;
-            this.resourcePath = "C:/Users/Jamie/Documents/NetBeansProjects/Cappuccino/";
             
             // Input Devices
             this.inputKeyboard = new InputKeyboard();
@@ -76,7 +75,6 @@ public class Game extends JPanel implements Runnable
             this.moduleRegistry = new Registry();
             // uncomment this later (reading from froth and requesting update info is pointless during development)
             
-            System.out.println("Game Constructor - moduleInit set to " + moduleInit);
             this.moduleInit = moduleInit;
             
             // Account Details
@@ -98,12 +96,10 @@ public class Game extends JPanel implements Runnable
             //setModule(new ModuleSupernova());
             //setModule(new ModuleSupernovaEditor());
             //setModule(new ModuleEarthland());
-            setModule(new ModuleIgnition());
+            //setModule(new ModuleIgnition());
             
             // Module (the main function declares a uniqueID)
-            
-            System.out.println("Game Init - moduleInit is " + this.moduleInit);
-            //Game.setModule(this.moduleInit);
+            Game.setModule(this.moduleInit);
             
             setModulePaused(false);
             setHomeMenuActive(false);
@@ -174,7 +170,7 @@ public class Game extends JPanel implements Runnable
         
         public static String getResourcePath()
         {
-            return resourcePath;
+            return "C:/Users/Jamie/Documents/NetBeansProjects/Cappuccino/";
         }
         
         public static Tileset getTileset(String reference)

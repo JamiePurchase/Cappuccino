@@ -23,21 +23,26 @@ public class Tileset
     
     public Tileset(String tilesetRef)
     {
+        // Debug
+        //System.out.println("Tileset Ref: " + tilesetRef);
+        
         String[] tileset = tilesetRef.split("\\|");
         this.tileSheet = Drawing.getImage(tileset[0], tileset[1]);
-        this.tileCols = Integer.parseInt(tileset[2]);
-        this.tileRows = Integer.parseInt(tileset[3]);
-        this.tileWide = Integer.parseInt(tileset[4]);
-        this.tileHigh = Integer.parseInt(tileset[5]);
+        this.tileWide = Integer.parseInt(tileset[2]);
+        this.tileHigh = Integer.parseInt(tileset[3]);
+        this.tileCols = Integer.parseInt(tileset[4]);
+        this.tileRows = Integer.parseInt(tileset[5]);
         this.tileCount = this.tileCols * this.tileRows;
     }
     
     public BufferedImage getTileAt(int col, int row)
     {
+        //System.out.println("Tileset tileGetAt(" + col + ", " + row + ")");
         if(col <= this.tileCols && row <= this.tileRows)
         {
             int tilePosX = (col - 1) * this.tileWide;
             int tilePosY = (row - 1) * this.tileHigh;
+            //System.out.println("tilePosX = " + tilePosX + ", tilePosY = " + tilePosY);
             return this.tileSheet.getSubimage(tilePosX, tilePosY, this.tileWide, this.tileHigh);
         }
         return this.tileSheet.getSubimage(0, 0, this.tileWide, this.tileHigh);

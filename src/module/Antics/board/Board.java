@@ -51,7 +51,7 @@ public class Board
         
         // Tiles
         this.boardTiles = new BoardTile[sizeX][sizeY];
-        this.buildTiles("texture/Shumak01.png", 0, 2, 1);
+        this.buildTiles("texture/Shumak01.png|Antics|32|32|6|5", 0, 2, 1);
         
         // Player
         this.entityPlayer = new Player(this, 6, 9, "S");
@@ -128,7 +128,7 @@ public class Board
                     String scenery = "false";
                     if(this.boardTiles[x][y].getScenery())
                     {
-                        scenery = "true | " + this.boardTiles[x][y].getSceneryFile();
+                        scenery = "true|" + this.boardTiles[x][y].getSceneryFile();
                     }
                     fileWrite.FileWriteLine(terrain + "|" + scenery);
                 }

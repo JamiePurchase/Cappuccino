@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import module.Ignition.state.StateBattlefield;
 import module.Module;
 import state.State;
+import module.Ignition.state.StateTitle;
 
 public class ModuleIgnition extends Module
 {
@@ -15,7 +16,7 @@ public class ModuleIgnition extends Module
     public ModuleIgnition()
     {
         // Initial State
-        this.setState(new StateBattlefield());
+        this.setState(new StateTitle());
         
         // Unique ID
         Game.setModuleID("GAM-IGNITION");
