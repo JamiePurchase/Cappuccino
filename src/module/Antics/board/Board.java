@@ -52,6 +52,8 @@ public class Board
         // Tiles
         this.boardTiles = new BoardTile[sizeX][sizeY];
         this.buildTiles("texture/Shumak01.png|Antics|32|32|6|5", 0, 2, 1);
+        // NOTE: buildTiles is filling the entire board with this terrain
+        // we need to instead use each line of the board froth file
         
         // Player
         this.entityPlayer = new Player(this, 6, 9, "S");
@@ -62,23 +64,23 @@ public class Board
     
     public void buildTiles(String tilesetName, int tilesetID, int tileX, int tileY)
     {
-        Tileset tileset00 = new Tileset(Drawing.getImage("texture/Shumak01.png", "Antics"), 32, 32, 6, 5);
-        Tileset tileset01 = new Tileset(Drawing.getImage("tileset/Shumak01.png", "Antics"), 32, 32, 6, 5);
-        Tileset tileset02 = new Tileset(Drawing.getImage("tileset/Shumak02.png", "Antics"), 32, 32, 4, 4);
+        Tileset tileset00 = new Tileset(this.boardTileset[0]);
+        Tileset tileset01 = new Tileset(this.boardTileset[1]);
+        Tileset tileset02 = new Tileset(this.boardTileset[2]);
         
         for(int x = 0; x < this.getBoardSizeX(); x++)
         {
             for(int y = 0; y < this.getBoardSizeY(); y++)
             {
                 this.boardTiles[x][y] = new BoardTile(tilesetName, tilesetID, tileX, tileY);
-                // NOTE: we could pass through the number of the tileset (in the array)
-                // along with the id of the particular tile and get a bufferedimage later
             }
         }
-                
-        //this.boardTiles[0][0].setScenery(2, 1, 1, true);
+        
+        // Temp Tree
+        this.boardTiles[0][0].setScenery(tileset02.getTileAt(1, 1), true);
         this.boardTiles[0][1].setScenery(tileset02.getTileAt(1, 2), true);
         
+        // Temp House
         this.boardTiles[5][3].setScenery(tileset01.getTileAt(1, 1), true);
         this.boardTiles[6][3].setScenery(tileset01.getTileAt(2, 1), true);
         this.boardTiles[7][3].setScenery(tileset01.getTileAt(5, 1), true);

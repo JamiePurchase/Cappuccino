@@ -2,6 +2,8 @@ package module.AnticsEditor.state;
 
 import engine.Game;
 import graphics.Drawing;
+import input.InputMouse;
+import input.InputMouseNexus;
 import java.awt.Color;
 import java.awt.Graphics;
 import module.Antics.board.Board;
@@ -34,6 +36,9 @@ public class StateBoard extends State
         // Nexus
         //Game.getInputMouse().nexusClear();
         //Game.getInputMouse().nexusAdd("board", 11, 64, 1340, 672);
+        InputMouse testMouse = Game.getInputMouse();
+        InputMouseNexus testNexus = new InputMouseNexus("test", 0, 0, 1, 1);
+        // UNRESOLVED ISSUE: nexusClear is throwing a null pointer error
     }
     
     public String getTitle()
@@ -70,6 +75,8 @@ public class StateBoard extends State
         g.setFont(Game.getFont("Title"));
         g.setColor(Color.BLACK);
         g.drawString(this.getTitle(), 15, 25);
+        
+        // Exit Button (please put an x in the corner
     }
     
     public void renderTools(Graphics g)
@@ -80,10 +87,20 @@ public class StateBoard extends State
         g.setColor(Drawing.getColorRGB(0, 0, 0));
         g.drawRect(10, 32, Game.width - 22, 32);
         
+        // Highlight
+        g.setColor(Drawing.getColorRGB(130, 125, 165));
+        String nexusRef = Game.getInputMouse().nexusCheckRef();
+        if(nexusRef.equals("new")) {g.fillRect(11, 33, 65, 30);}
+        
         // Options
         g.setFont(Game.getFont("Standard"));
         g.setColor(Color.BLACK);
-        g.drawString("BOARD", 25, 55);
+        g.drawString("NEW", 25, 55);
+        g.drawString("OPEN", 100, 55);
+        g.drawString("SAVE", 175, 55);
+        g.drawString("CLOSE", 250, 55);
+        g.drawString("BOARD", 325, 55);
+        g.drawString("OPTIONS", 400, 55);
     }
     
     public void tick()
@@ -101,7 +118,30 @@ public class StateBoard extends State
                 Game.getInputMouse().mouseActionDone();
                 System.out.println("Clicked on the board");
             }
-            //if(ref
+            if(ref.equals("new"))
+            {
+                
+            }
+            if(ref.equals("open"))
+            {
+                
+            }
+            if(ref.equals("save"))
+            {
+                
+            }
+            if(ref.equals("close"))
+            {
+                
+            }
+            if(ref.equals("board"))
+            {
+                
+            }
+            if(ref.equals("options"))
+            {
+                
+            }
         }
     }
 }

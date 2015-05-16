@@ -21,9 +21,9 @@ public class ModuleAntics extends Module
     public ModuleAntics()
     {
         // Initial State
-        //this.setState(new StateTitle(this));
+        this.setState(new StateTitle(this));
         //this.setState(new StateBoard());
-        this.setState(new StateBattle());
+        //this.setState(new StateBattle());
         
         // Unique ID
         Game.setModuleID("GAM-ANTICS01");
