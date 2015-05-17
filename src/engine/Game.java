@@ -8,6 +8,7 @@ import graphics.Tileset;
 import graphics.TilesetManager;
 import input.InputKeyboard;
 import input.InputMouse;
+import input.InputMouseWheel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -41,6 +42,7 @@ public class Game extends JPanel implements Runnable
 	private Graphics g;
         private static InputKeyboard inputKeyboard;
         private static InputMouse inputMouse;
+        private static InputMouseWheel inputMouseWheel;
 	public static AudioManager audio;
         private static boolean accountActive;
         private static Account accountObject;
@@ -67,6 +69,7 @@ public class Game extends JPanel implements Runnable
             // Input Devices
             this.inputKeyboard = new InputKeyboard();
             this.inputMouse = new InputMouse();
+            this.inputMouseWheel = new InputMouseWheel();
             
             // Debug Manager
             systemDebug = new Debug(false);
@@ -146,6 +149,11 @@ public class Game extends JPanel implements Runnable
         public static InputMouse getInputMouse()
         {
             return inputMouse;
+        }
+        
+        public static InputMouseWheel getInputMouseWheel()
+        {
+            return inputMouseWheel;
         }
         
         public static Module getModule()

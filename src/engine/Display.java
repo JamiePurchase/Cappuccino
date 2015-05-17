@@ -16,11 +16,11 @@ public class Display
 	
 	public Display(String title, int width, int height)
 	{
-		this.title = title;
-		this.width = width;
-		this.height = height;
-		createDisplay();
-                this.panel.requestFocus();
+            this.title = title;
+            this.width = width;
+            this.height = height;
+            createDisplay();
+            this.panel.requestFocus();
 	}
 	
 	private void createDisplay()
@@ -48,6 +48,7 @@ public class Display
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.addMouseListener(Game.getInputMouse());
 		canvas.addMouseMotionListener(Game.getInputMouse());
+                canvas.addMouseWheelListener(Game.getInputMouseWheel());
 		
 		// Add the canvas to the frame
 		frame.add(canvas);

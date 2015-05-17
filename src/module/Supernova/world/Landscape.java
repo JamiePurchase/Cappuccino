@@ -75,6 +75,9 @@ public class Landscape
     {
         renderBackground(g);
         renderTerrain(g);
+        renderScenery(g);
+        //renderResources(g);
+        // Consider where these should live (war or landscape)
     }
     
     public void renderBackground(Graphics g)
@@ -83,24 +86,40 @@ public class Landscape
         g.fillRect(0, 0, Game.width, Game.height);
     }
     
+    public void renderResources(Graphics g)
+    {
+        // Temp
+    }
+    
+    public void renderScenery(Graphics g)
+    {
+        // Temp
+    }
+    
     public void renderTerrain(Graphics g)
     {
         for(int cellY = 0; cellY < this.terrainImage.length; cellY++)
         {
             for(int cellX = 0; cellX < this.terrainImage[cellY].length; cellX++)
             {
-                int screenX = (cellX * 128  / 2) + (cellY * 128  / 2);
+                int screenX = (cellX * 128 / 2) + (cellY * 128 / 2);
                 int screenY = (cellY * 64 / 2) - (cellX * 64 / 2);
                 g.drawImage(this.terrainImage[cellX][cellY], screenX, screenY, null);
             }
         }
     }
     
-    public void setBoardZoom(int value)
+    public void setBoardZoom(String direction, int value)
     {
-        if(value >= 1 && value <= 3)
+        if(direction.equals("UP"))
         {
-            this.boardZoom = value;
+            this.boardZoom -= value;
+            if(this.boardZoom < 1) {this.boardZoom = 1;}
+        }
+        if(direction.equals("DOWN"))
+        {
+            this.boardZoom += value;
+            if(this.boardZoom > 4) {this.boardZoom = 4;}
         }
     }
     

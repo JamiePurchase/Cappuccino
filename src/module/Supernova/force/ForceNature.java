@@ -35,6 +35,10 @@ public class ForceNature extends Force
         // Temp
         this.entityScenery[0] = new EntityScenery(this.warObject, "graphics/scenery/Mongun8/tree01.png", 700, 50, 128, 128);
         this.entitySceneryCount = 1;
+        
+        // Temp
+        this.entityResource[0] = new EntityResource(this.warObject, "STERNUMITE", 850, "graphics/resources/sternumite.png", 500, 350, 128, 128);
+        this.entityResourceCount = 1;
     }
     
     public EntityUnit[] getEntityCreature()

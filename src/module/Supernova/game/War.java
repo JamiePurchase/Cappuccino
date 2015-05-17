@@ -200,6 +200,14 @@ public class War
                 // Temp
                 this.warSelectBuilding.getCommands()[0][0].renderIcon(g, 425, Game.height - 130);
             }
+            if(this.warSelectType == "RESOURCE")
+            {
+                String tempSelect = "Resource Selected: " + this.warSelectResource.getTitle();
+                g.setFont(Game.getFont("FrameTitle"));
+                g.setColor(Color.WHITE);
+                g.drawString(tempSelect, 350, Game.height - 100);
+            }
+            // NOTE: This method is not dry!
         }
     }
     
@@ -213,10 +221,12 @@ public class War
         for(int creature = 0; creature < warNature.getEntityCreatureCount(); creature++)
         {
             warNature.getEntityCreature()[creature].render(g, this.warLandscape.getBoardZoom());
+            warNature.getEntityCreature()[creature].mouseNexus("F0|C" + creature);
         }
         for(int resource = 0; resource < warNature.getEntityResourceCount(); resource++)
         {
             warNature.getEntityResource()[resource].render(g, this.warLandscape.getBoardZoom());
+            warNature.getEntityResource()[resource].mouseNexus("F0|R" + resource);
         }
         for(int scenery = 0; scenery < warNature.getEntitySceneryCount(); scenery++)
         {
@@ -291,6 +301,16 @@ public class War
                     // NOTE: Perhaps state would be better than here to say which unit(s) is/are selected?
                     this.selectBuilding(buildingClick);
                 }
+                
+                if(ref.equals("F0|R0"))
+                {
+                    Game.getInputMouse().mouseActionDone();
+
+                    // Temp
+                    EntityResource resourceClick = this.warNature.getEntityResource()[0];
+                    resourceClick.setSelected(true);
+                    this.selectResource(resourceClick);
+                }
             }
             else
             {
@@ -312,6 +332,11 @@ public class War
                     // NOTE: Need to pass in 'this' as reference
                 }
             }
+        }
+        if(Game.getInputMouseWheel().getAction() == true)
+        {
+            this.getLandscape().setBoardZoom(Game.getInputMouseWheel().getDirection(), Game.getInputMouseWheel().getRotation());
+            Game.getInputMouseWheel().setActionDone();
         }
     }
     

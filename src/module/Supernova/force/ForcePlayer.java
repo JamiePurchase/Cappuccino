@@ -14,6 +14,7 @@ public class ForcePlayer extends Force
     
     // Resources
     private int resourceObsidian;
+    private int resourceSternumite;
     
     // Buildings
     private EntityBuilding[] entityBuildings;
